@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from "styled-components";
 
 const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(1.25rem); }
   to   { opacity: 1; transform: translateY(0); }
 `;
 
@@ -44,12 +44,12 @@ const Page = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: 0 auto;
   padding: 5rem 2.5rem 6rem;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     padding: 3rem 1.5rem 4rem;
   }
 `;
@@ -71,7 +71,7 @@ const PageTag = styled.p`
     content: "";
     display: inline-block;
     width: 2rem;
-    height: 1.5px;
+    height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
   }
@@ -95,7 +95,7 @@ const PageTitle = styled.h1`
 
 const Divider = styled.div`
   width: 4rem;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${anim(0.2)}
@@ -123,12 +123,12 @@ const Rail = styled.div`
 `;
 
 const Dot = styled.div`
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   border-radius: 50%;
   background: #c8963e;
-  border: 2px solid #f5edd8;
-  box-shadow: 0 0 0 1.5px #c8963e;
+  border: 0.125rem solid #f5edd8;
+  box-shadow: 0 0 0 0.09375rem #c8963e;
   flex-shrink: 0;
   z-index: 1;
 `;
@@ -194,7 +194,7 @@ const Tag = styled.span`
   letter-spacing: 0.06em;
   color: #8a6a3a;
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(200, 150, 62, 0.4);
+  border: 0.0625rem solid rgba(200, 150, 62, 0.4);
   background: rgba(200, 150, 62, 0.06);
   transition:
     background 0.18s ease,

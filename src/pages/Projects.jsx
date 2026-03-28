@@ -1,7 +1,7 @@
 import styled, { keyframes, css } from "styled-components";
 
 const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(1.25rem); }
   to   { opacity: 1; transform: translateY(0); }
 `;
 
@@ -52,12 +52,12 @@ const Page = styled.div`
 `;
 
 const Inner = styled.div`
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: 0 auto;
   padding: 5rem 2.5rem 6rem;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     padding: 3rem 1.5rem 4rem;
   }
 `;
@@ -80,7 +80,7 @@ const PageTitle = styled.h1`
 
 const Divider = styled.div`
   width: 4rem;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${anim(0.2)}
@@ -90,7 +90,7 @@ const List = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0;
-  border-top: 1px solid rgba(44, 26, 14, 0.1);
+  border-top: 0.0625 solid rgba(44, 26, 14, 0.1);
 `;
 
 const ProjectItem = styled.div`
@@ -98,7 +98,7 @@ const ProjectItem = styled.div`
   grid-template-columns: 4rem 1fr;
   gap: 2rem;
   padding: 2.5rem 0;
-  border-bottom: 1px solid rgba(44, 26, 14, 0.1);
+  border-bottom: 0.0625 solid rgba(44, 26, 14, 0.1);
   transition: background 0.2s ease;
   ${(p) => anim(0.18 + p.$index * 0.1)}
 
@@ -109,7 +109,7 @@ const ProjectItem = styled.div`
     padding-right: 1.5rem;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
   }
@@ -124,7 +124,7 @@ const ProjectNumber = styled.div`
   padding-top: 0.2rem;
   user-select: none;
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     font-size: 1.4rem;
   }
 `;
@@ -159,7 +159,7 @@ const ProjectHighlight = styled.span`
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #8fa882;
-  border: 1px solid #b2c4a4;
+  border: 0.0625 solid #b2c4a4;
   padding: 0.2rem 0.6rem;
   white-space: nowrap;
   align-self: flex-start;
@@ -173,7 +173,7 @@ const ProjectDesc = styled.p`
   line-height: 1.8;
   color: #5c3e22;
   margin: 0;
-  max-width: 640px;
+  max-width: 40rem;
 `;
 
 const ProjectFooter = styled.div`
@@ -197,7 +197,7 @@ const Tag = styled.span`
   letter-spacing: 0.06em;
   color: #8a6a3a;
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(200, 150, 62, 0.4);
+  border: 0.0625 solid rgba(200, 150, 62, 0.4);
   background: rgba(200, 150, 62, 0.06);
   transition:
     background 0.18s ease,

@@ -3,13 +3,13 @@ import styled, { keyframes } from "styled-components";
 import ProfilePic from "../assets/profile.jpeg";
 
 const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(1.375rem); }
   to   { opacity: 1; transform: translateY(0); }
 `;
 
 const floatFrame = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(0rem); }
+  50%       { transform: translateY(-0.375rem); }
 `;
 
 const HomePage = styled.div`
@@ -67,7 +67,7 @@ const Header = styled.p`
     content: "";
     display: inline-block;
     width: 2rem;
-    height: 1.5px;
+    height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
   }
@@ -99,7 +99,7 @@ const Desc = styled.p`
   font-weight: 300;
   line-height: 1.8;
   color: #5c3e22;
-  max-width: 400px;
+  max-width: 25rem;
   margin: 0;
 
   opacity: 0;
@@ -130,7 +130,7 @@ const PrimaryButton = styled(Link)`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1.5px solid #2c1a0e;
+  border: 0.09375rem solid #2c1a0e;
   transition:
     background 0.22s ease,
     color 0.22s ease,
@@ -149,7 +149,7 @@ const PrimaryButton = styled(Link)`
   }
 
   &:hover::after {
-    transform: translateX(3px);
+    transform: translateX(0.1875rem);
   }
 `;
 
@@ -165,7 +165,7 @@ const SecondaryButton = styled(Link)`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1.5px solid rgba(44, 26, 14, 0.35);
+  border: 0.09375rem solid rgba(44, 26, 14, 0.35);
   transition:
     border-color 0.22s ease,
     background 0.22s ease;
@@ -186,22 +186,22 @@ const Aside = styled.div`
   animation: ${fadeUp} 0.7s ease forwards;
   animation-delay: 0.3s;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     order: -1;
   }
 `;
 
 const PhotoFrame = styled.div`
   position: relative;
-  width: 280px;
-  height: 340px;
+  width: 17.5rem;
+  height: 21.25rem;
   flex-shrink: 0;
   animation: ${floatFrame} 5s ease-in-out infinite;
   animation-delay: 1s;
 
-  @media (max-width: 480px) {
-    width: 220px;
-    height: 270px;
+  @media (max-width: 30rem) {
+    width: 13.75rem;
+    height: 16.875rem;
   }
 `;
 
@@ -218,20 +218,20 @@ const Photo = styled.img`
 
 const PhotoBorder = styled.div`
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: -12px;
-  bottom: -12px;
-  border: 2px solid #c8963e;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: -0.75rem;
+  bottom: -0.75rem;
+  border: 0.125rem solid #c8963e;
   z-index: 0;
 `;
 
 const PhotoCorner = styled.div`
   position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 48px;
-  height: 48px;
+  bottom: -1.25rem;
+  right: -1.25rem;
+  width: 3rem;
+  height: 3rem;
   background: #b2c4a4;
   z-index: 2;
 `;

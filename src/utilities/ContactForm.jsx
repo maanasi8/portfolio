@@ -6,13 +6,13 @@ const SUPABASE_ANON_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2ZGFjanNhdmt4aWtha2JxcWpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MTc0OTgsImV4cCI6MjA5MDI5MzQ5OH0.sYhUgj_EFucRiCkEuM3sa933USBNAagi83014LBbIo0";
 
 const fadeIn = keyframes`
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(0.5rem); }
   to   { opacity: 1; transform: translateY(0); }
 `;
 
 const Card = styled.div`
   background: #ead9bc;
-  border: 1px solid rgba(44, 26, 14, 0.12);
+  border: 0.0625rem solid rgba(44, 26, 14, 0.12);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,7 @@ const inputBase = `
   font-weight: 300;
   color: #2c1a0e;
   background: #f5edd8;
-  border: 1.5px solid rgba(44, 26, 14, 0.15);
+  border: 0.09375rem solid rgba(44, 26, 14, 0.15);
   padding: 0.75rem 1rem;
   outline: none;
   transition: border-color 0.2s ease;
@@ -73,7 +73,7 @@ const Input = styled.input`
 const Textarea = styled.textarea`
   ${inputBase}
   resize: vertical;
-  min-height: 130px;
+  min-height: 10.625rem;
   line-height: 1.7;
 `;
 
@@ -90,7 +90,7 @@ const SendBtn = styled.button`
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1.5px solid #2c1a0e;
+  border: 0.09375rem solid #2c1a0e;
   cursor: pointer;
   transition:
     background 0.22s ease,
@@ -129,11 +129,11 @@ const SuccessMsg = styled.div`
 `;
 
 const SuccessIcon = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: rgba(200, 150, 62, 0.12);
-  border: 1.5px solid #c8963e;
+  border: 0.09375rem solid #c8963e;
   display: flex;
   align-items: center;
   justify-content: center;
