@@ -340,22 +340,6 @@ export default function Contact() {
           </Left>
 
           <Right>
-            {/* <Card>
-              <CardLabel>Open to</CardLabel>
-              <OpenList>
-                {[
-                  "Full-time software engineering roles",
-                  "Interesting freelance / contract work",
-                  "Open source collaboration",
-                  "Technical conversations & mentorship",
-                ].map((item, i) => (
-                  <OpenItem key={i}>{item}</OpenItem>
-                ))}
-              </OpenList>
-              <SendBtn href="mailto:maanasishastri8@gmail.com">
-                Send Email →
-              </SendBtn>
-            </Card> */}
             <ContactForm />
           </Right>
         </Grid>
