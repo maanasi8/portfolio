@@ -179,88 +179,6 @@ const CopyBtn = styled.button`
 
 const Right = styled.div``;
 
-const Card = styled.div`
-  background: #ead9bc;
-  border: 1px solid rgba(44, 26, 14, 0.12);
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-`;
-
-const CardLabel = styled.p`
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #a6782a;
-  margin: 0;
-`;
-
-const OpenList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-top: 1px solid rgba(44, 26, 14, 0.1);
-`;
-
-const OpenItem = styled.li`
-  font-family: "Heebo", sans-serif;
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: #2c1a0e;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid rgba(44, 26, 14, 0.08);
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #c8963e;
-    flex-shrink: 0;
-  }
-
-  &:last-child {
-    border-bottom: none;
-  }
-`;
-
-const SendBtn = styled.a`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  background: #2c1a0e;
-  color: #f5edd8;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1.5px solid #2c1a0e;
-  transition:
-    background 0.22s ease,
-    color 0.22s ease,
-    border-color 0.22s ease;
-
-  &:hover {
-    background: #c8963e;
-    border-color: #c8963e;
-    color: #2c1a0e;
-  }
-`;
-
 export default function Contact() {
   const [copied, setCopied] = useState(false);
 
@@ -330,11 +248,6 @@ export default function Contact() {
                 >
                   github.com/maanasi8 ↗
                 </ChannelValue>
-              </Channel>
-
-              <Channel>
-                <ChannelLabel>Location</ChannelLabel>
-                <ChannelText>Bengaluru, Karnataka, India</ChannelText>
               </Channel>
             </Channels>
           </Left>

@@ -14,6 +14,14 @@ const anim = (delay) => css`
 const projects = [
   {
     number: "01",
+    title: "Spot the Fraudster",
+    desc: "A Kafka-based game application with a real-time data pipeline. Players interact with streaming data to identify fraudulent behaviour — designed to showcase the power of real-time event processing.",
+    tags: ["Kafka", "Go", "Real-time", "Data Pipeline"],
+    link: "https://www.zeliot.in/developer-blog/games-built-using-condense-spot-the-fraudster",
+    highlight: "Real-time",
+  },
+  {
+    number: "02",
     title: "Facial Emotion Recognition System",
     desc: "Deployed a CNN model on MAX78000 microcontroller for real-time facial emotion recognition at the edge. Achieved 56.52% accuracy with an inference time of just 1,516 μs using PyTorch-based embedded workflows.",
     tags: ["PyTorch", "CNN", "Edge AI", "MAX78000", "Embedded"],
@@ -21,28 +29,20 @@ const projects = [
     highlight: "Edge AI",
   },
   {
-    number: "02",
-    title: "ITIHAAS — History Quiz Web App",
+    number: "03",
+    title: "ITIHAAS - History Quiz Web App",
     desc: "A full-stack history-learning platform built with React.js, Spring Boot, and MongoDB. Designed for accessibility and inclusivity, achieving 20% higher user engagement while supporting SDG 4 (Quality Education).",
     tags: ["React.js", "Spring Boot", "MongoDB", "Full Stack"],
     link: "https://sites.google.com/view/maanasi-itihaas-a-quiz-app",
     highlight: "SDG 4",
   },
   {
-    number: "03",
+    number: "04",
     title: "Bus Reservation System",
     desc: "A console-based C++ application using object-oriented programming principles. Designed admin and user dashboards to manage buses, passengers, and ticket bookings, leveraging STL containers like map and vector.",
     tags: ["C++", "OOP", "STL", "Data Structures"],
     link: null,
     highlight: "OOP",
-  },
-  {
-    number: "04",
-    title: "Spot the Fraudster",
-    desc: "A Kafka-based game application with a real-time data pipeline. Players interact with streaming data to identify fraudulent behaviour — designed to showcase the power of real-time event processing.",
-    tags: ["Kafka", "Go", "Real-time", "Data Pipeline"],
-    link: null,
-    highlight: "Real-time",
   },
 ];
 
@@ -59,29 +59,6 @@ const Inner = styled.div`
 
   @media (max-width: 768px) {
     padding: 3rem 1.5rem 4rem;
-  }
-`;
-
-const PageTag = styled.p`
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.72rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: #a6782a;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem;
-  ${anim(0.05)}
-
-  &::before {
-    content: "";
-    display: inline-block;
-    width: 2rem;
-    height: 1.5px;
-    background: #c8963e;
-    flex-shrink: 0;
   }
 `;
 
@@ -255,13 +232,7 @@ export default function Projects() {
   return (
     <Page>
       <Inner>
-        <PageTag>Portfolio</PageTag>
-
-        <PageTitle>
-          Selected
-          <br />
-          <em>Projects</em>
-        </PageTitle>
+        <PageTitle>Projects</PageTitle>
 
         <Divider />
 

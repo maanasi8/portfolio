@@ -103,109 +103,10 @@ const BioP = styled.p`
   margin: 0;
 `;
 
-const BioLinks = styled.div`
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-  margin-top: 0.5rem;
-`;
-
-const BtnPrimary = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.65rem 1.4rem;
-  background: #2c1a0e;
-  color: #f5edd8;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1.5px solid #2c1a0e;
-  transition:
-    background 0.22s ease,
-    color 0.22s ease,
-    border-color 0.22s ease;
-
-  &:hover {
-    background: #c8963e;
-    border-color: #c8963e;
-    color: #2c1a0e;
-  }
-`;
-
-const BtnGhost = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.65rem 1.4rem;
-  background: transparent;
-  color: #2c1a0e;
-  font-family: "Open Sans", sans-serif;
-  font-size: 0.78rem;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  border: 1.5px solid rgba(44, 26, 14, 0.35);
-  transition:
-    border-color 0.22s ease,
-    background 0.22s ease;
-
-  &:hover {
-    border-color: #c8963e;
-    background: rgba(200, 150, 62, 0.08);
-  }
-`;
-
 const PhotoCol = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2rem;
-`;
-
-const PhotoWrap = styled.div`
-  position: relative;
-  width: 100%;
-  max-width: 320px;
-  aspect-ratio: 3 / 4;
-
-  @media (max-width: 768px) {
-    max-width: 240px;
-  }
-`;
-
-const Photo = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-  position: relative;
-  z-index: 1;
-  filter: saturate(0.9) contrast(1.02);
-`;
-
-const PhotoAccent = styled.div`
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: -10px;
-  bottom: -10px;
-  border: 2px solid #c8963e;
-  z-index: 0;
-`;
-
-const PhotoCorner = styled.div`
-  position: absolute;
-  bottom: -18px;
-  right: -18px;
-  width: 40px;
-  height: 40px;
-  background: #b2c4a4;
-  z-index: 2;
 `;
 
 const SectionLabel = styled.h3`
@@ -384,19 +285,19 @@ const education = [
   {
     degree: "B.E. Computer Science",
     school: "KLE Technological University",
-    year: "2021–2025",
+    year: "2021-2025",
     score: "CGPA 9.05",
   },
   {
     degree: "Pre-University",
     school: "The Learning Centre PU College, Mangalore",
-    year: "2019–2021",
+    year: "2019-2021",
     score: "95.5%",
   },
   {
-    degree: "Secondary School",
+    degree: "Schooling",
     school: "Vimal V. Deshpande School, Haliyal",
-    year: "2009–2019",
+    year: "2009-2019",
     score: "93.4%",
   },
 ];
@@ -429,32 +330,9 @@ export default function About() {
               details that elevate user experience. For me, clean code and
               thoughtful design are deeply connected.
             </BioP>
-
-            <BioLinks>
-              <BtnPrimary
-                href="https://linkedin.com/in/maanasi8"
-                target="_blank"
-                rel="noreferrer"
-              >
-                LinkedIn
-              </BtnPrimary>
-              <BtnGhost
-                href="https://github.com/maanasi8"
-                target="_blank"
-                rel="noreferrer"
-              >
-                GitHub
-              </BtnGhost>
-            </BioLinks>
           </Bio>
 
           <PhotoCol>
-            <PhotoWrap>
-              <Photo src={ProfilePic} alt="Maanasi Shastri" />
-              <PhotoAccent />
-              <PhotoCorner />
-            </PhotoWrap>
-
             <div>
               <SectionLabel>Education</SectionLabel>
               <EduList>

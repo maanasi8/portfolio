@@ -103,9 +103,9 @@ const Divider = styled.div`
 
 const Timeline = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 0;
-  max-width: 720px;
+  flex-direction: row;
+  gap: 2.5rem;
+  max-width: 100%;
 `;
 
 const ExpItem = styled.div`
@@ -131,15 +131,6 @@ const Dot = styled.div`
   box-shadow: 0 0 0 1.5px #c8963e;
   flex-shrink: 0;
   z-index: 1;
-`;
-
-const Line = styled.div`
-  width: 1.5px;
-  flex: 1;
-  background: rgba(200, 150, 62, 0.25);
-  margin-top: 6px;
-  margin-bottom: ${(p) => (p.$last ? "0" : "-1px")};
-  display: ${(p) => (p.$last ? "none" : "block")};
 `;
 
 const ExpContent = styled.div`
@@ -234,7 +225,6 @@ export default function Experience() {
             <ExpItem key={i} $index={i}>
               <Rail>
                 <Dot />
-                <Line $last={i === experience.length - 1} />
               </Rail>
 
               <ExpContent>
