@@ -8,7 +8,7 @@ import Contact from "./pages/Contact";
 import "./index.css";
 import styled from "styled-components";
 import { List, X } from "phosphor-react";
-import Menu from "./utilities/Menu";
+import Menu from "./drawers/Menu";
 
 const MainWrapper = styled.div`
   margin: 0;
@@ -36,7 +36,7 @@ const LogoLink = styled(Link)`
   display: flex;
   color: #000000;
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: rem;
   align-items: center;
   justify-content: center;
   text-decoration: none;
