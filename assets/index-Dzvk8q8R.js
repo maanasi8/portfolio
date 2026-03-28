@@ -10,11 +10,11 @@ Error generating stack: `+e.message+`
 
 Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}/*`}">.`)}let u=at(),d;if(t){let e=typeof t==`string`?ie(t):t;T(c===`/`||e.pathname?.startsWith(c),`When overriding the location using \`<Routes location>\` or \`useRoutes(routes, location)\`, the location pathname must begin with the portion of the URL pathname that was matched by all parent routes. The current pathname base is "${c}" but pathname "${e.pathname}" was given in the \`location\` prop.`),d=e}else d=u;let f=d.pathname||`/`,p=f;if(c!==`/`){let e=c.replace(/^\//,``).split(`/`);p=`/`+f.replace(/^\//,``).split(`/`).slice(e.length).join(`/`)}let m=se(e,{pathname:p});E(l||m!=null,`No routes matched location "${d.pathname}${d.search}${d.hash}" `),E(m==null||m[m.length-1].route.element!==void 0||m[m.length-1].route.Component!==void 0||m[m.length-1].route.lazy!==void 0,`Matched leaf route at location "${d.pathname}${d.search}${d.hash}" does not have an element or Component. This means it will render an <Outlet /> with a null value by default resulting in an "empty" page.`);let h=yt(m&&m.map(e=>Object.assign({},e,{params:Object.assign({},o,e.params),pathname:je([c,r.encodeLocation?r.encodeLocation(e.pathname.replace(/%/g,`%25`).replace(/\?/g,`%3F`).replace(/#/g,`%23`)).pathname:e.pathname]),pathnameBase:e.pathnameBase===`/`?c:je([c,r.encodeLocation?r.encodeLocation(e.pathnameBase.replace(/%/g,`%25`).replace(/\?/g,`%3F`).replace(/#/g,`%23`)).pathname:e.pathnameBase])})),i,n);return t&&h?x.createElement(Ye.Provider,{value:{location:{pathname:`/`,search:``,hash:``,state:null,key:`default`,unstable_mask:void 0,...d},navigationType:`POP`}},h):h}function pt(){let e=Ot(),t=Ie(e)?`${e.status} ${e.statusText}`:e instanceof Error?e.message:JSON.stringify(e),n=e instanceof Error?e.stack:null,r=`rgba(200,200,200, 0.5)`,i={padding:`0.5rem`,backgroundColor:r},a={padding:`2px 4px`,backgroundColor:r},o=null;return console.error(`Error handled by React Router default ErrorBoundary:`,e),o=x.createElement(x.Fragment,null,x.createElement(`p`,null,`💿 Hey developer 👋`),x.createElement(`p`,null,`You can provide a way better UX than this when your app throws errors by providing your own `,x.createElement(`code`,{style:a},`ErrorBoundary`),` or`,` `,x.createElement(`code`,{style:a},`errorElement`),` prop on your route.`)),x.createElement(x.Fragment,null,x.createElement(`h2`,null,`Unexpected Application Error!`),x.createElement(`h3`,{style:{fontStyle:`italic`}},t),n?x.createElement(`pre`,{style:i},n):null,o)}var mt=x.createElement(pt,null),ht=class extends x.Component{constructor(e){super(e),this.state={location:e.location,revalidation:e.revalidation,error:e.error}}static getDerivedStateFromError(e){return{error:e}}static getDerivedStateFromProps(e,t){return t.location!==e.location||t.revalidation!==`idle`&&e.revalidation===`idle`?{error:e.error,location:e.location,revalidation:e.revalidation}:{error:e.error===void 0?t.error:e.error,location:t.location,revalidation:e.revalidation||t.revalidation}}componentDidCatch(e,t){this.props.onError?this.props.onError(e,t):console.error(`React Router caught the following error during render`,e)}render(){let e=this.state.error;if(this.context&&typeof e==`object`&&e&&`digest`in e&&typeof e.digest==`string`){let t=nt(e.digest);t&&(e=t)}let t=e===void 0?this.props.children:x.createElement(Xe.Provider,{value:this.props.routeContext},x.createElement(Ze.Provider,{value:e,children:this.props.component}));return this.context?x.createElement(_t,{error:e},t):t}};ht.contextType=We;var gt=new WeakMap;function _t({children:e,error:t}){let{basename:n}=x.useContext(Je);if(typeof t==`object`&&t&&`digest`in t&&typeof t.digest==`string`){let e=tt(t.digest);if(e){let r=gt.get(t);if(r)throw r;let i=ze(e.location,n);if(Re&&!gt.get(t))if(i.isExternal||e.reloadDocument)window.location.href=i.absoluteURL||i.to;else{let n=Promise.resolve().then(()=>window.__reactRouterDataRouter.navigate(i.to,{replace:e.replace}));throw gt.set(t,n),n}return x.createElement(`meta`,{httpEquiv:`refresh`,content:`0;url=${i.absoluteURL||i.to}`})}}return e}function vt({routeContext:e,match:t,children:n}){let r=x.useContext(He);return r&&r.static&&r.staticContext&&(t.route.errorElement||t.route.ErrorBoundary)&&(r.staticContext._deepestRenderedBoundaryId=t.route.id),x.createElement(Xe.Provider,{value:e},n)}function yt(e,t=[],n){let r=n?.state;if(e==null){if(!r)return null;if(r.errors)e=r.matches;else if(t.length===0&&!r.initialized&&r.matches.length>0)e=r.matches;else return null}let i=e,a=r?.errors;if(a!=null){let e=i.findIndex(e=>e.route.id&&a?.[e.route.id]!==void 0);T(e>=0,`Could not find a matching route for errors on route IDs: ${Object.keys(a).join(`,`)}`),i=i.slice(0,Math.min(i.length,e+1))}let o=!1,s=-1;if(n&&r){o=r.renderFallback;for(let e=0;e<i.length;e++){let t=i[e];if((t.route.HydrateFallback||t.route.hydrateFallbackElement)&&(s=e),t.route.id){let{loaderData:e,errors:a}=r,c=t.route.loader&&!e.hasOwnProperty(t.route.id)&&(!a||a[t.route.id]===void 0);if(t.route.lazy||c){n.isStatic&&(o=!0),i=s>=0?i.slice(0,s+1):[i[0]];break}}}}let c=n?.onError,l=r&&c?(e,t)=>{c(e,{location:r.location,params:r.matches?.[0]?.params??{},unstable_pattern:Le(r.matches),errorInfo:t})}:void 0;return i.reduceRight((e,n,c)=>{let u,d=!1,f=null,p=null;r&&(u=a&&n.route.id?a[n.route.id]:void 0,f=n.route.errorElement||mt,o&&(s<0&&c===0?(jt(`route-fallback`,!1,"No `HydrateFallback` element provided to render during initial hydration"),d=!0,p=null):s===c&&(d=!0,p=n.route.hydrateFallbackElement||null)));let m=t.concat(i.slice(0,c+1)),h=()=>{let t;return t=u?f:d?p:n.route.Component?x.createElement(n.route.Component,null):n.route.element?n.route.element:e,x.createElement(vt,{match:n,routeContext:{outlet:e,matches:m,isDataRoute:r!=null},children:t})};return r&&(n.route.ErrorBoundary||n.route.errorElement||c===0)?x.createElement(ht,{location:r.location,revalidation:r.revalidation,component:f,error:u,children:h(),routeContext:{outlet:null,matches:m,isDataRoute:!0},onError:l}):h()},null)}function bt(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function xt(e){let t=x.useContext(He);return T(t,bt(e)),t}function St(e){let t=x.useContext(Ue);return T(t,bt(e)),t}function Ct(e){let t=x.useContext(Xe);return T(t,bt(e)),t}function wt(e){let t=Ct(e),n=t.matches[t.matches.length-1];return T(n.route.id,`${e} can only be used on routes that contain a unique "id"`),n.route.id}function Tt(){return wt(`useRouteId`)}function Et(){return St(`useNavigation`).navigation}function Dt(){let{matches:e,loaderData:t}=St(`useMatches`);return x.useMemo(()=>e.map(e=>D(e,t)),[e,t])}function Ot(){let e=x.useContext(Ze),t=St(`useRouteError`),n=wt(`useRouteError`);return e===void 0?t.errors?.[n]:e}function kt(){let{router:e}=xt(`useNavigate`),t=wt(`useNavigate`),n=x.useRef(!1);return st(()=>{n.current=!0}),x.useCallback(async(r,i={})=>{E(n.current,ot),n.current&&(typeof r==`number`?await e.navigate(r):await e.navigate(r,{fromRouteId:t,...i}))},[e,t])}var At={};function jt(e,t,n){!t&&!At[e]&&(At[e]=!0,E(!1,n))}x.useOptimistic,x.memo(Mt);function Mt({routes:e,future:t,state:n,isStatic:r,onError:i}){return ft(e,void 0,{state:n,isStatic:r,onError:i,future:t})}function Nt(e){T(!1,`A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.`)}function Pt({basename:e=`/`,children:t=null,location:n,navigationType:r=`POP`,navigator:i,static:a=!1,unstable_useTransitions:o}){T(!it(),`You cannot render a <Router> inside another <Router>. You should never have more than one in your app.`);let s=e.replace(/^\/*/,`/`),c=x.useMemo(()=>({basename:s,navigator:i,static:a,unstable_useTransitions:o,future:{}}),[s,i,a,o]);typeof n==`string`&&(n=ie(n));let{pathname:l=`/`,search:u=``,hash:d=``,state:f=null,key:p=`default`,unstable_mask:m}=n,h=x.useMemo(()=>{let e=Ce(l,s);return e==null?null:{location:{pathname:e,search:u,hash:d,state:f,key:p,unstable_mask:m},navigationType:r}},[s,l,u,d,f,p,r,m]);return E(h!=null,`<Router basename="${s}"> is not able to match the URL "${l}${u}${d}" because it does not start with the basename, so the <Router> won't render anything.`),h==null?null:x.createElement(Je.Provider,{value:c},x.createElement(Ye.Provider,{children:t,value:h}))}function Ft({children:e,location:t}){return dt(It(e),t)}x.Component;function It(e,t=[]){let n=[];return x.Children.forEach(e,(e,r)=>{if(!x.isValidElement(e))return;let i=[...t,r];if(e.type===x.Fragment){n.push.apply(n,It(e.props.children,i));return}T(e.type===Nt,`[${typeof e.type==`string`?e.type:e.type.name}] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>`),T(!e.props.index||!e.props.children,`An index route cannot have child routes.`);let a={id:e.props.id||i.join(`-`),caseSensitive:e.props.caseSensitive,element:e.props.element,Component:e.props.Component,index:e.props.index,path:e.props.path,middleware:e.props.middleware,loader:e.props.loader,action:e.props.action,hydrateFallbackElement:e.props.hydrateFallbackElement,HydrateFallback:e.props.HydrateFallback,errorElement:e.props.errorElement,ErrorBoundary:e.props.ErrorBoundary,hasErrorBoundary:e.props.hasErrorBoundary===!0||e.props.ErrorBoundary!=null||e.props.errorElement!=null,shouldRevalidate:e.props.shouldRevalidate,handle:e.props.handle,lazy:e.props.lazy};e.props.children&&(a.children=It(e.props.children,i)),n.push(a)}),n}var Lt=`get`,Rt=`application/x-www-form-urlencoded`;function zt(e){return typeof HTMLElement<`u`&&e instanceof HTMLElement}function Bt(e){return zt(e)&&e.tagName.toLowerCase()===`button`}function Vt(e){return zt(e)&&e.tagName.toLowerCase()===`form`}function Ht(e){return zt(e)&&e.tagName.toLowerCase()===`input`}function Ut(e){return!!(e.metaKey||e.altKey||e.ctrlKey||e.shiftKey)}function Wt(e,t){return e.button===0&&(!t||t===`_self`)&&!Ut(e)}var Gt=null;function Kt(){if(Gt===null)try{new FormData(document.createElement(`form`),0),Gt=!1}catch{Gt=!0}return Gt}var qt=new Set([`application/x-www-form-urlencoded`,`multipart/form-data`,`text/plain`]);function Jt(e){return e!=null&&!qt.has(e)?(E(!1,`"${e}" is not a valid \`encType\` for \`<Form>\`/\`<fetcher.Form>\` and will default to "${Rt}"`),null):e}function Yt(e,t){let n,r,i,a,o;if(Vt(e)){let o=e.getAttribute(`action`);r=o?Ce(o,t):null,n=e.getAttribute(`method`)||Lt,i=Jt(e.getAttribute(`enctype`))||Rt,a=new FormData(e)}else if(Bt(e)||Ht(e)&&(e.type===`submit`||e.type===`image`)){let o=e.form;if(o==null)throw Error(`Cannot submit a <button> or <input type="submit"> without a <form>`);let s=e.getAttribute(`formaction`)||o.getAttribute(`action`);if(r=s?Ce(s,t):null,n=e.getAttribute(`formmethod`)||o.getAttribute(`method`)||Lt,i=Jt(e.getAttribute(`formenctype`))||Jt(o.getAttribute(`enctype`))||Rt,a=new FormData(o,e),!Kt()){let{name:t,type:n,value:r}=e;if(n===`image`){let e=t?`${t}.`:``;a.append(`${e}x`,`0`),a.append(`${e}y`,`0`)}else t&&a.append(t,r)}}else if(zt(e))throw Error(`Cannot submit element that is not <form>, <button>, or <input type="submit|image">`);else n=Lt,r=null,i=Rt,o=e;return a&&i===`text/plain`&&(o=a,a=void 0),{action:r,method:n.toLowerCase(),encType:i,formData:a,body:o}}Object.getOwnPropertyNames(Object.prototype).sort().join(`\0`);var Xt={"&":`\\u0026`,">":`\\u003e`,"<":`\\u003c`,"\u2028":`\\u2028`,"\u2029":`\\u2029`},Zt=/[&><\u2028\u2029]/g;function Qt(e){return e.replace(Zt,e=>Xt[e])}function $t(e,t){if(e===!1||e==null)throw Error(t)}function en(e,t,n,r){let i=typeof e==`string`?new URL(e,typeof window>`u`?`server://singlefetch/`:window.location.origin):e;return n?i.pathname.endsWith(`/`)?i.pathname=`${i.pathname}_.${r}`:i.pathname=`${i.pathname}.${r}`:i.pathname===`/`?i.pathname=`_root.${r}`:t&&Ce(i.pathname,t)===`/`?i.pathname=`${t.replace(/\/$/,``)}/_root.${r}`:i.pathname=`${i.pathname.replace(/\/$/,``)}.${r}`,i}async function tn(e,t){if(e.id in t)return t[e.id];try{let n=await b(()=>import(e.module),[]);return t[e.id]=n,n}catch(t){return console.error(`Error loading route module \`${e.module}\`, reloading page...`),console.error(t),window.__reactRouterContext&&window.__reactRouterContext.isSpaMode,window.location.reload(),new Promise(()=>{})}}function nn(e){return e!=null&&typeof e.page==`string`}function rn(e){return e==null?!1:e.href==null?e.rel===`preload`&&typeof e.imageSrcSet==`string`&&typeof e.imageSizes==`string`:typeof e.rel==`string`&&typeof e.href==`string`}async function an(e,t,n){return un((await Promise.all(e.map(async e=>{let r=t.routes[e.route.id];if(r){let e=await tn(r,n);return e.links?e.links():[]}return[]}))).flat(1).filter(rn).filter(e=>e.rel===`stylesheet`||e.rel===`preload`).map(e=>e.rel===`stylesheet`?{...e,rel:`prefetch`,as:`style`}:{...e,rel:`prefetch`}))}function on(e,t,n,r,i,a){let o=(e,t)=>n[t]?e.route.id!==n[t].route.id:!0,s=(e,t)=>n[t].pathname!==e.pathname||n[t].route.path?.endsWith(`*`)&&n[t].params[`*`]!==e.params[`*`];return a===`assets`?t.filter((e,t)=>o(e,t)||s(e,t)):a===`data`?t.filter((t,a)=>{let c=r.routes[t.route.id];if(!c||!c.hasLoader)return!1;if(o(t,a)||s(t,a))return!0;if(t.route.shouldRevalidate){let r=t.route.shouldRevalidate({currentUrl:new URL(i.pathname+i.search+i.hash,window.origin),currentParams:n[0]?.params||{},nextUrl:new URL(e,window.origin),nextParams:t.params,defaultShouldRevalidate:!0});if(typeof r==`boolean`)return r}return!0}):[]}function sn(e,t,{includeHydrateFallback:n}={}){return cn(e.map(e=>{let r=t.routes[e.route.id];if(!r)return[];let i=[r.module];return r.clientActionModule&&(i=i.concat(r.clientActionModule)),r.clientLoaderModule&&(i=i.concat(r.clientLoaderModule)),n&&r.hydrateFallbackModule&&(i=i.concat(r.hydrateFallbackModule)),r.imports&&(i=i.concat(r.imports)),i}).flat(1))}function cn(e){return[...new Set(e)]}function ln(e){let t={},n=Object.keys(e).sort();for(let r of n)t[r]=e[r];return t}function un(e,t){let n=new Set,r=new Set(t);return e.reduce((e,i)=>{if(t&&!nn(i)&&i.as===`script`&&i.href&&r.has(i.href))return e;let a=JSON.stringify(ln(i));return n.has(a)||(n.add(a),e.push({key:a,link:i})),e},[])}function dn(){let e=x.useContext(He);return $t(e,`You must render this element inside a <DataRouterContext.Provider> element`),e}function fn(){let e=x.useContext(Ue);return $t(e,`You must render this element inside a <DataRouterStateContext.Provider> element`),e}var pn=x.createContext(void 0);pn.displayName=`FrameworkContext`;function mn(){let e=x.useContext(pn);return $t(e,`You must render this element inside a <HydratedRouter> element`),e}function hn(e,t){let n=x.useContext(pn),[r,i]=x.useState(!1),[a,o]=x.useState(!1),{onFocus:s,onBlur:c,onMouseEnter:l,onMouseLeave:u,onTouchStart:d}=t,f=x.useRef(null);x.useEffect(()=>{if(e===`render`&&o(!0),e===`viewport`){let e=new IntersectionObserver(e=>{e.forEach(e=>{o(e.isIntersecting)})},{threshold:.5});return f.current&&e.observe(f.current),()=>{e.disconnect()}}},[e]),x.useEffect(()=>{if(r){let e=setTimeout(()=>{o(!0)},100);return()=>{clearTimeout(e)}}},[r]);let p=()=>{i(!0)},m=()=>{i(!1),o(!1)};return n?e===`intent`?[a,f,{onFocus:gn(s,p),onBlur:gn(c,m),onMouseEnter:gn(l,p),onMouseLeave:gn(u,m),onTouchStart:gn(d,p)}]:[a,f,{}]:[!1,f,{}]}function gn(e,t){return n=>{e&&e(n),n.defaultPrevented||t(n)}}function _n({page:e,...t}){let{router:n}=dn(),r=x.useMemo(()=>se(n.routes,e,n.basename),[n.routes,e,n.basename]);return r?x.createElement(yn,{page:e,matches:r,...t}):null}function vn(e){let{manifest:t,routeModules:n}=mn(),[r,i]=x.useState([]);return x.useEffect(()=>{let r=!1;return an(e,t,n).then(e=>{r||i(e)}),()=>{r=!0}},[e,t,n]),r}function yn({page:e,matches:t,...n}){let r=at(),{future:i,manifest:a,routeModules:o}=mn(),{basename:s}=dn(),{loaderData:c,matches:l}=fn(),u=x.useMemo(()=>on(e,t,l,a,r,`data`),[e,t,l,a,r]),d=x.useMemo(()=>on(e,t,l,a,r,`assets`),[e,t,l,a,r]),f=x.useMemo(()=>{if(e===r.pathname+r.search+r.hash)return[];let n=new Set,l=!1;if(t.forEach(e=>{let t=a.routes[e.route.id];!t||!t.hasLoader||(!u.some(t=>t.route.id===e.route.id)&&e.route.id in c&&o[e.route.id]?.shouldRevalidate||t.hasClientLoader?l=!0:n.add(e.route.id))}),n.size===0)return[];let d=en(e,s,i.unstable_trailingSlashAwareDataRequests,`data`);return l&&n.size>0&&d.searchParams.set(`_routes`,t.filter(e=>n.has(e.route.id)).map(e=>e.route.id).join(`,`)),[d.pathname+d.search]},[s,i.unstable_trailingSlashAwareDataRequests,c,r,a,u,t,e,o]),p=x.useMemo(()=>sn(d,a),[d,a]),m=vn(d);return x.createElement(x.Fragment,null,f.map(e=>x.createElement(`link`,{key:e,rel:`prefetch`,as:`fetch`,href:e,...n})),p.map(e=>x.createElement(`link`,{key:e,rel:`modulepreload`,href:e,...n})),m.map(({key:e,link:t})=>x.createElement(`link`,{key:e,nonce:n.nonce,...t,crossOrigin:t.crossOrigin??n.crossOrigin})))}function bn(...e){return t=>{e.forEach(e=>{typeof e==`function`?e(t):e!=null&&(e.current=t)})}}x.Component;var xn=typeof window<`u`&&window.document!==void 0&&window.document.createElement!==void 0;try{xn&&(window.__reactRouterVersion=`7.13.2`)}catch{}function Sn({basename:e,children:t,unstable_useTransitions:n,window:r}){let i=x.useRef();i.current??=w({window:r,v5Compat:!0});let a=i.current,[o,s]=x.useState({action:a.action,location:a.location}),c=x.useCallback(e=>{n===!1?s(e):x.startTransition(()=>s(e))},[n]);return x.useLayoutEffect(()=>a.listen(c),[a,c]),x.createElement(Pt,{basename:e,children:t,location:o.location,navigationType:o.action,navigator:a,unstable_useTransitions:n})}function Cn({basename:e,children:t,history:n,unstable_useTransitions:r}){let[i,a]=x.useState({action:n.action,location:n.location}),o=x.useCallback(e=>{r===!1?a(e):x.startTransition(()=>a(e))},[r]);return x.useLayoutEffect(()=>n.listen(o),[n,o]),x.createElement(Pt,{basename:e,children:t,location:i.location,navigationType:i.action,navigator:n,unstable_useTransitions:r})}Cn.displayName=`unstable_HistoryRouter`;var wn=/^(?:[a-z][a-z0-9+.-]*:|\/\/)/i,Tn=x.forwardRef(function({onClick:e,discover:t=`render`,prefetch:n=`none`,relative:r,reloadDocument:i,replace:a,unstable_mask:o,state:s,target:c,to:l,preventScrollReset:u,viewTransition:d,unstable_defaultShouldRevalidate:f,...p},m){let{basename:h,navigator:g,unstable_useTransitions:_}=x.useContext(Je),v=typeof l==`string`&&wn.test(l),y=ze(l,h);l=y.to;let b=rt(l,{relative:r}),S=at(),C=null;if(o){let e=Ae(o,[],S.unstable_mask?S.unstable_mask.pathname:`/`,!0);h!==`/`&&(e.pathname=e.pathname===`/`?h:je([h,e.pathname])),C=g.createHref(e)}let[w,T,E]=hn(n,p),ee=Mn(l,{replace:a,unstable_mask:o,state:s,target:c,preventScrollReset:u,relative:r,viewTransition:d,unstable_defaultShouldRevalidate:f,unstable_useTransitions:_});function te(t){e&&e(t),t.defaultPrevented||ee(t)}let ne=!(y.isExternal||i),re=x.createElement(`a`,{...p,...E,href:(ne?C:void 0)||y.absoluteURL||b,onClick:ne?te:e,ref:bn(m,T),target:c,"data-discover":!v&&t===`render`?`true`:void 0});return w&&!v?x.createElement(x.Fragment,null,re,x.createElement(_n,{page:b})):re});Tn.displayName=`Link`;var En=x.forwardRef(function({"aria-current":e=`page`,caseSensitive:t=!1,className:n=``,end:r=!1,style:i,to:a,viewTransition:o,children:s,...c},l){let u=ut(a,{relative:c.relative}),d=at(),f=x.useContext(Ue),{navigator:p,basename:m}=x.useContext(Je),h=f!=null&&Hn(u)&&o===!0,g=p.encodeLocation?p.encodeLocation(u).pathname:u.pathname,_=d.pathname,v=f&&f.navigation&&f.navigation.location?f.navigation.location.pathname:null;t||(_=_.toLowerCase(),v=v?v.toLowerCase():null,g=g.toLowerCase()),v&&m&&(v=Ce(v,m)||v);let y=g!==`/`&&g.endsWith(`/`)?g.length-1:g.length,b=_===g||!r&&_.startsWith(g)&&_.charAt(y)===`/`,S=v!=null&&(v===g||!r&&v.startsWith(g)&&v.charAt(g.length)===`/`),C={isActive:b,isPending:S,isTransitioning:h},w=b?e:void 0,T;T=typeof n==`function`?n(C):[n,b?`active`:null,S?`pending`:null,h?`transitioning`:null].filter(Boolean).join(` `);let E=typeof i==`function`?i(C):i;return x.createElement(Tn,{...c,"aria-current":w,className:T,ref:l,style:E,to:a,viewTransition:o},typeof s==`function`?s(C):s)});En.displayName=`NavLink`;var Dn=x.forwardRef(({discover:e=`render`,fetcherKey:t,navigate:n,reloadDocument:r,replace:i,state:a,method:o=Lt,action:s,onSubmit:c,relative:l,preventScrollReset:u,viewTransition:d,unstable_defaultShouldRevalidate:f,...p},m)=>{let{unstable_useTransitions:h}=x.useContext(Je),g=Fn(),_=In(s,{relative:l}),v=o.toLowerCase()===`get`?`get`:`post`,y=typeof s==`string`&&wn.test(s);return x.createElement(`form`,{ref:m,method:v,action:_,onSubmit:r?c:e=>{if(c&&c(e),e.defaultPrevented)return;e.preventDefault();let r=e.nativeEvent.submitter,s=r?.getAttribute(`formmethod`)||o,p=()=>g(r||e.currentTarget,{fetcherKey:t,method:s,navigate:n,replace:i,state:a,relative:l,preventScrollReset:u,viewTransition:d,unstable_defaultShouldRevalidate:f});h&&n!==!1?x.startTransition(()=>p()):p()},...p,"data-discover":!y&&e===`render`?`true`:void 0})});Dn.displayName=`Form`;function On({getKey:e,storageKey:t,...n}){let r=x.useContext(pn),{basename:i}=x.useContext(Je),a=at(),o=Dt();Bn({getKey:e,storageKey:t});let s=x.useMemo(()=>{if(!r||!e)return null;let t=zn(a,o,i,e);return t===a.key?null:t},[]);if(!r||r.isSpaMode)return null;let c=((e,t)=>{if(!window.history.state||!window.history.state.key){let e=Math.random().toString(32).slice(2);window.history.replaceState({key:e},``)}try{let n=JSON.parse(sessionStorage.getItem(e)||`{}`)[t||window.history.state.key];typeof n==`number`&&window.scrollTo(0,n)}catch(t){console.error(t),sessionStorage.removeItem(e)}}).toString();return x.createElement(`script`,{...n,suppressHydrationWarning:!0,dangerouslySetInnerHTML:{__html:`(${c})(${Qt(JSON.stringify(t||Ln))}, ${Qt(JSON.stringify(s))})`}})}On.displayName=`ScrollRestoration`;function kn(e){return`${e} must be used within a data router.  See https://reactrouter.com/en/main/routers/picking-a-router.`}function An(e){let t=x.useContext(He);return T(t,kn(e)),t}function jn(e){let t=x.useContext(Ue);return T(t,kn(e)),t}function Mn(e,{target:t,replace:n,unstable_mask:r,state:i,preventScrollReset:a,relative:o,viewTransition:s,unstable_defaultShouldRevalidate:c,unstable_useTransitions:l}={}){let u=ct(),d=at(),f=ut(e,{relative:o});return x.useCallback(p=>{if(Wt(p,t)){p.preventDefault();let t=n===void 0?re(d)===re(f):n,m=()=>u(e,{replace:t,unstable_mask:r,state:i,preventScrollReset:a,relative:o,viewTransition:s,unstable_defaultShouldRevalidate:c});l?x.startTransition(()=>m()):m()}},[d,u,f,n,r,i,t,e,a,o,s,c,l])}var Nn=0,Pn=()=>`__${String(++Nn)}__`;function Fn(){let{router:e}=An(`useSubmit`),{basename:t}=x.useContext(Je),n=Tt(),r=e.fetch,i=e.navigate;return x.useCallback(async(e,a={})=>{let{action:o,method:s,encType:c,formData:l,body:u}=Yt(e,t);a.navigate===!1?await r(a.fetcherKey||Pn(),n,a.action||o,{unstable_defaultShouldRevalidate:a.unstable_defaultShouldRevalidate,preventScrollReset:a.preventScrollReset,formData:l,body:u,formMethod:a.method||s,formEncType:a.encType||c,flushSync:a.flushSync}):await i(a.action||o,{unstable_defaultShouldRevalidate:a.unstable_defaultShouldRevalidate,preventScrollReset:a.preventScrollReset,formData:l,body:u,formMethod:a.method||s,formEncType:a.encType||c,replace:a.replace,state:a.state,fromRouteId:n,flushSync:a.flushSync,viewTransition:a.viewTransition})},[r,i,t,n])}function In(e,{relative:t}={}){let{basename:n}=x.useContext(Je),r=x.useContext(Xe);T(r,`useFormAction must be used inside a RouteContext`);let[i]=r.matches.slice(-1),a={...ut(e||`.`,{relative:t})},o=at();if(e==null){a.search=o.search;let e=new URLSearchParams(a.search),t=e.getAll(`index`);if(t.some(e=>e===``)){e.delete(`index`),t.filter(e=>e).forEach(t=>e.append(`index`,t));let n=e.toString();a.search=n?`?${n}`:``}}return(!e||e===`.`)&&i.route.index&&(a.search=a.search?a.search.replace(/^\?/,`?index&`):`?index`),n!==`/`&&(a.pathname=a.pathname===`/`?n:je([n,a.pathname])),re(a)}var Ln=`react-router-scroll-positions`,Rn={};function zn(e,t,n,r){let i=null;return r&&(i=r(n===`/`?e:{...e,pathname:Ce(e.pathname,n)||e.pathname},t)),i??=e.key,i}function Bn({getKey:e,storageKey:t}={}){let{router:n}=An(`useScrollRestoration`),{restoreScrollPosition:r,preventScrollReset:i}=jn(`useScrollRestoration`),{basename:a}=x.useContext(Je),o=at(),s=Dt(),c=Et();x.useEffect(()=>(window.history.scrollRestoration=`manual`,()=>{window.history.scrollRestoration=`auto`}),[]),Vn(x.useCallback(()=>{if(c.state===`idle`){let t=zn(o,s,a,e);Rn[t]=window.scrollY}try{sessionStorage.setItem(t||Ln,JSON.stringify(Rn))}catch(e){E(!1,`Failed to save scroll positions in sessionStorage, <ScrollRestoration /> will not work properly (${e}).`)}window.history.scrollRestoration=`auto`},[c.state,e,a,o,s,t])),typeof document<`u`&&(x.useLayoutEffect(()=>{try{let e=sessionStorage.getItem(t||Ln);e&&(Rn=JSON.parse(e))}catch{}},[t]),x.useLayoutEffect(()=>{let t=n?.enableScrollRestoration(Rn,()=>window.scrollY,e?(t,n)=>zn(t,n,a,e):void 0);return()=>t&&t()},[n,a,e]),x.useLayoutEffect(()=>{if(r!==!1){if(typeof r==`number`){window.scrollTo(0,r);return}try{if(o.hash){let e=document.getElementById(decodeURIComponent(o.hash.slice(1)));if(e){e.scrollIntoView();return}}}catch{E(!1,`"${o.hash.slice(1)}" is not a decodable element ID. The view will not scroll to it.`)}i!==!0&&window.scrollTo(0,0)}},[o,r,i]))}function Vn(e,t){let{capture:n}=t||{};x.useEffect(()=>{let t=n==null?void 0:{capture:n};return window.addEventListener(`pagehide`,e,t),()=>{window.removeEventListener(`pagehide`,e,t)}},[e,n])}function Hn(e,{relative:t}={}){let n=x.useContext(Ge);T(n!=null,"`useViewTransitionState` must be used within `react-router-dom`'s `RouterProvider`.  Did you accidentally import `RouterProvider` from `react-router`?");let{basename:r}=An(`useViewTransitionState`),i=ut(e,{relative:t});if(!n.isTransitioning)return!1;let a=Ce(n.currentLocation.pathname,r)||n.currentLocation.pathname,o=Ce(n.nextLocation.pathname,r)||n.nextLocation.pathname;return be(i.pathname,o)!=null||be(i.pathname,a)!=null}var Un=c(g(),1),Wn=function(){return Wn=Object.assign||function(e){for(var t,n=1,r=arguments.length;n<r;n++)for(var i in t=arguments[n],t)Object.prototype.hasOwnProperty.call(t,i)&&(e[i]=t[i]);return e},Wn.apply(this,arguments)};function Gn(e,t,n){if(n||arguments.length===2)for(var r=0,i=t.length,a;r<i;r++)(a||!(r in t))&&(a||=Array.prototype.slice.call(t,0,r),a[r]=t[r]);return e.concat(a||Array.prototype.slice.call(t))}var Kn={animationIterationCount:1,aspectRatio:1,borderImageOutset:1,borderImageSlice:1,borderImageWidth:1,boxFlex:1,boxFlexGroup:1,boxOrdinalGroup:1,columnCount:1,columns:1,flex:1,flexGrow:1,flexPositive:1,flexShrink:1,flexNegative:1,flexOrder:1,gridRow:1,gridRowEnd:1,gridRowSpan:1,gridRowStart:1,gridColumn:1,gridColumnEnd:1,gridColumnSpan:1,gridColumnStart:1,msGridRow:1,msGridRowSpan:1,msGridColumn:1,msGridColumnSpan:1,fontWeight:1,lineHeight:1,opacity:1,order:1,orphans:1,scale:1,tabSize:1,widows:1,zIndex:1,zoom:1,WebkitLineClamp:1,fillOpacity:1,floodOpacity:1,stopOpacity:1,strokeDasharray:1,strokeDashoffset:1,strokeMiterlimit:1,strokeOpacity:1,strokeWidth:1},A=`-ms-`,qn=`-moz-`,j=`-webkit-`,Jn=`comm`,Yn=`rule`,Xn=`decl`,Zn=`@import`,Qn=`@namespace`,$n=`@keyframes`,er=`@layer`,tr=Math.abs,nr=String.fromCharCode,rr=Object.assign;function ir(e,t){return cr(e,0)^45?(((t<<2^cr(e,0))<<2^cr(e,1))<<2^cr(e,2))<<2^cr(e,3):0}function ar(e){return e.trim()}function or(e,t){return(e=t.exec(e))?e[0]:e}function M(e,t,n){return e.replace(t,n)}function sr(e,t,n){return e.indexOf(t,n)}function cr(e,t){return e.charCodeAt(t)|0}function lr(e,t,n){return e.slice(t,n)}function ur(e){return e.length}function dr(e){return e.length}function fr(e,t){return t.push(e),e}function pr(e,t){return e.map(t).join(``)}function mr(e,t){return e.filter(function(e){return!or(e,t)})}var hr=1,gr=1,_r=0,vr=0,N=0,yr=``;function br(e,t,n,r,i,a,o,s){return{value:e,root:t,parent:n,type:r,props:i,children:a,line:hr,column:gr,length:o,return:``,siblings:s}}function xr(e,t){return rr(br(``,null,null,``,null,null,0,e.siblings),e,{length:-e.length},t)}function Sr(e){for(;e.root;)e=xr(e.root,{children:[e]});fr(e,e.siblings)}function Cr(){return N}function wr(){return N=vr>0?cr(yr,--vr):0,gr--,N===10&&(gr=1,hr--),N}function Tr(){return N=vr<_r?cr(yr,vr++):0,gr++,N===10&&(gr=1,hr++),N}function Er(){return cr(yr,vr)}function Dr(){return vr}function Or(e,t){return lr(yr,e,t)}function kr(e){switch(e){case 0:case 9:case 10:case 13:case 32:return 5;case 33:case 43:case 44:case 47:case 62:case 64:case 126:case 59:case 123:case 125:return 4;case 58:return 3;case 34:case 39:case 40:case 91:return 2;case 41:case 93:return 1}return 0}function Ar(e){return hr=gr=1,_r=ur(yr=e),vr=0,[]}function jr(e){return yr=``,e}function Mr(e){return ar(Or(vr-1,Fr(e===91?e+2:e===40?e+1:e)))}function Nr(e){for(;(N=Er())&&N<33;)Tr();return kr(e)>2||kr(N)>3?``:` `}function Pr(e,t){for(;--t&&Tr()&&!(N<48||N>102||N>57&&N<65||N>70&&N<97););return Or(e,Dr()+(t<6&&Er()==32&&Tr()==32))}function Fr(e){for(;Tr();)switch(N){case e:return vr;case 34:case 39:e!==34&&e!==39&&Fr(N);break;case 40:e===41&&Fr(e);break;case 92:Tr();break}return vr}function Ir(e,t){for(;Tr()&&e+N!==57&&!(e+N===84&&Er()===47););return`/*`+Or(t,vr-1)+`*`+nr(e===47?e:Tr())}function Lr(e){for(;!kr(Er());)Tr();return Or(e,vr)}function Rr(e){return jr(zr(``,null,null,null,[``],e=Ar(e),0,[0],e))}function zr(e,t,n,r,i,a,o,s,c){for(var l=0,u=0,d=o,f=0,p=0,m=0,h=1,g=1,_=1,v=0,y=``,b=i,x=a,S=r,C=y;g;)switch(m=v,v=Tr()){case 40:if(m!=108&&cr(C,d-1)==58){sr(C+=M(Mr(v),`&`,`&\f`),`&\f`,tr(l?s[l-1]:0))!=-1&&(_=-1);break}case 34:case 39:case 91:C+=Mr(v);break;case 9:case 10:case 13:case 32:C+=Nr(m);break;case 92:C+=Pr(Dr()-1,7);continue;case 47:switch(Er()){case 42:case 47:fr(Vr(Ir(Tr(),Dr()),t,n,c),c),(kr(m||1)==5||kr(Er()||1)==5)&&ur(C)&&lr(C,-1,void 0)!==` `&&(C+=` `);break;default:C+=`/`}break;case 123*h:s[l++]=ur(C)*_;case 125*h:case 59:case 0:switch(v){case 0:case 125:g=0;case 59+u:_==-1&&(C=M(C,/\f/g,``)),p>0&&(ur(C)-d||h===0&&m===47)&&fr(p>32?Hr(C+`;`,r,n,d-1,c):Hr(M(C,` `,``)+`;`,r,n,d-2,c),c);break;case 59:C+=`;`;default:if(fr(S=Br(C,t,n,l,u,i,s,y,b=[],x=[],d,a),a),v===123)if(u===0)zr(C,t,S,S,b,a,d,s,x);else{switch(f){case 99:if(cr(C,3)===110)break;case 108:if(cr(C,2)===97)break;default:u=0;case 100:case 109:case 115:}u?zr(e,S,S,r&&fr(Br(e,S,S,0,0,i,s,y,i,b=[],d,x),x),i,x,d,s,r?b:x):zr(C,S,S,S,[``],x,0,s,x)}}l=u=p=0,h=_=1,y=C=``,d=o;break;case 58:d=1+ur(C),p=m;default:if(h<1){if(v==123)--h;else if(v==125&&h++==0&&wr()==125)continue}switch(C+=nr(v),v*h){case 38:_=u>0?1:(C+=`\f`,-1);break;case 44:s[l++]=(ur(C)-1)*_,_=1;break;case 64:Er()===45&&(C+=Mr(Tr())),f=Er(),u=d=ur(y=C+=Lr(Dr())),v++;break;case 45:m===45&&ur(C)==2&&(h=0)}}return a}function Br(e,t,n,r,i,a,o,s,c,l,u,d){for(var f=i-1,p=i===0?a:[``],m=dr(p),h=0,g=0,_=0;h<r;++h)for(var v=0,y=lr(e,f+1,f=tr(g=o[h])),b=e;v<m;++v)(b=ar(g>0?p[v]+` `+y:M(y,/&\f/g,p[v])))&&(c[_++]=b);return br(e,t,n,i===0?Yn:s,c,l,u,d)}function Vr(e,t,n,r){return br(e,t,n,Jn,nr(Cr()),lr(e,2,-2),0,r)}function Hr(e,t,n,r,i){return br(e,t,n,Xn,lr(e,0,r),lr(e,r+1,-1),r,i)}function Ur(e,t,n){switch(ir(e,t)){case 5103:return j+`print-`+e+e;case 5737:case 4201:case 3177:case 3433:case 1641:case 4457:case 2921:case 5572:case 6356:case 5844:case 3191:case 6645:case 3005:case 4215:case 6389:case 5109:case 5365:case 5621:case 3829:case 6391:case 5879:case 5623:case 6135:case 4599:return j+e+e;case 4855:return j+e.replace(`add`,`source-over`).replace(`substract`,`source-out`).replace(`intersect`,`source-in`).replace(`exclude`,`xor`)+e;case 4789:return qn+e+e;case 5349:case 4246:case 4810:case 6968:case 2756:return j+e+qn+e+A+e+e;case 5936:switch(cr(e,t+11)){case 114:return j+e+A+M(e,/[svh]\w+-[tblr]{2}/,`tb`)+e;case 108:return j+e+A+M(e,/[svh]\w+-[tblr]{2}/,`tb-rl`)+e;case 45:return j+e+A+M(e,/[svh]\w+-[tblr]{2}/,`lr`)+e}case 6828:case 4268:case 2903:return j+e+A+e+e;case 6165:return j+e+A+`flex-`+e+e;case 5187:return j+e+M(e,/(\w+).+(:[^]+)/,j+`box-$1$2`+A+`flex-$1$2`)+e;case 5443:return j+e+A+`flex-item-`+M(e,/flex-|-self/g,``)+(or(e,/flex-|baseline/)?``:A+`grid-row-`+M(e,/flex-|-self/g,``))+e;case 4675:return j+e+A+`flex-line-pack`+M(e,/align-content|flex-|-self/g,``)+e;case 5548:return j+e+A+M(e,`shrink`,`negative`)+e;case 5292:return j+e+A+M(e,`basis`,`preferred-size`)+e;case 6060:return j+`box-`+M(e,`-grow`,``)+j+e+A+M(e,`grow`,`positive`)+e;case 4554:return j+M(e,/([^-])(transform)/g,`$1`+j+`$2`)+e;case 6187:return M(M(M(e,/(zoom-|grab)/,j+`$1`),/(image-set)/,j+`$1`),e,``)+e;case 5495:case 3959:return M(e,/(image-set\([^]*)/,j+"$1$`$1");case 4968:return M(M(e,/(.+:)(flex-)?(.*)/,j+`box-pack:$3`+A+`flex-pack:$3`),/space-between/,`justify`)+j+e+e;case 4200:if(!or(e,/flex-|baseline/))return A+`grid-column-align`+lr(e,t)+e;break;case 2592:case 3360:return A+M(e,`template-`,``)+e;case 4384:case 3616:return n&&n.some(function(e,n){return t=n,or(e.props,/grid-\w+-end/)})?~sr(e+(n=n[t].value),`span`,0)?e:A+M(e,`-start`,``)+e+A+`grid-row-span:`+(~sr(n,`span`,0)?or(n,/\d+/):or(n,/\d+/)-+or(e,/\d+/))+`;`:A+M(e,`-start`,``)+e;case 4896:case 4128:return n&&n.some(function(e){return or(e.props,/grid-\w+-start/)})?e:A+M(M(e,`-end`,`-span`),`span `,``)+e;case 4095:case 3583:case 4068:case 2532:return M(e,/(.+)-inline(.+)/,j+`$1$2`)+e;case 8116:case 7059:case 5753:case 5535:case 5445:case 5701:case 4933:case 4677:case 5533:case 5789:case 5021:case 4765:if(ur(e)-1-t>6)switch(cr(e,t+1)){case 109:if(cr(e,t+4)!==45)break;case 102:return M(e,/(.+:)(.+)-([^]+)/,`$1`+j+`$2-$3$1`+qn+(cr(e,t+3)==108?`$3`:`$2-$3`))+e;case 115:return~sr(e,`stretch`,0)?Ur(M(e,`stretch`,`fill-available`),t,n)+e:e}break;case 5152:case 5920:return M(e,/(.+?):(\d+)(\s*\/\s*(span)?\s*(\d+))?(.*)/,function(t,n,r,i,a,o,s){return A+n+`:`+r+s+(i?A+n+`-span:`+(a?o:o-+r)+s:``)+e});case 4949:if(cr(e,t+6)===121)return M(e,`:`,`:`+j)+e;break;case 6444:switch(cr(e,cr(e,14)===45?18:11)){case 120:return M(e,/(.+:)([^;\s!]+)(;|(\s+)?!.+)?/,`$1`+j+(cr(e,14)===45?`inline-`:``)+`box$3$1`+j+`$2$3$1`+A+`$2box$3`)+e;case 100:return M(e,`:`,`:`+A)+e}break;case 5719:case 2647:case 2135:case 3927:case 2391:return M(e,`scroll-`,`scroll-snap-`)+e}return e}function Wr(e,t){for(var n=``,r=0;r<e.length;r++)n+=t(e[r],r,e,t)||``;return n}function Gr(e,t,n,r){switch(e.type){case er:if(e.children.length)break;case Zn:case Qn:case Xn:return e.return=e.return||e.value;case Jn:return``;case $n:return e.return=e.value+`{`+Wr(e.children,r)+`}`;case Yn:if(!ur(e.value=e.props.join(`,`)))return``}return ur(n=Wr(e.children,r))?e.return=e.value+`{`+n+`}`:``}function Kr(e){var t=dr(e);return function(n,r,i,a){for(var o=``,s=0;s<t;s++)o+=e[s](n,r,i,a)||``;return o}}function qr(e){return function(t){t.root||(t=t.return)&&e(t)}}function Jr(e,t,n,r){if(e.length>-1&&!e.return)switch(e.type){case Xn:e.return=Ur(e.value,e.length,n);return;case $n:return Wr([xr(e,{value:M(e.value,`@`,`@`+j)})],r);case Yn:if(e.length)return pr(n=e.props,function(t){switch(or(t,r=/(::plac\w+|:read-\w+)/)){case`:read-only`:case`:read-write`:Sr(xr(e,{props:[M(t,/:(read-\w+)/,`:`+qn+`$1`)]})),Sr(xr(e,{props:[t]})),rr(e,{props:mr(n,r)});break;case`::placeholder`:Sr(xr(e,{props:[M(t,/:(plac\w+)/,`:`+j+`input-$1`)]})),Sr(xr(e,{props:[M(t,/:(plac\w+)/,`:`+qn+`$1`)]})),Sr(xr(e,{props:[M(t,/:(plac\w+)/,A+`input-$1`)]})),Sr(xr(e,{props:[t]})),rr(e,{props:mr(n,r)});break}return``})}}var Yr=typeof process<`u`&&({}.REACT_APP_SC_ATTR||{}.SC_ATTR)||`data-styled`,Xr=`active`,Zr=`data-styled-version`,Qr=`6.3.12`,$r=`/*!sc*/
 `,ei=typeof window<`u`&&typeof document<`u`,ti=!!(typeof SC_DISABLE_SPEEDY==`boolean`?SC_DISABLE_SPEEDY:typeof process<`u`&&{}.REACT_APP_SC_DISABLE_SPEEDY!==void 0&&{}.REACT_APP_SC_DISABLE_SPEEDY!==``?{}.REACT_APP_SC_DISABLE_SPEEDY!==`false`&&{}.REACT_APP_SC_DISABLE_SPEEDY:typeof process<`u`&&{}.SC_DISABLE_SPEEDY!==void 0&&{}.SC_DISABLE_SPEEDY!==``&&{}.SC_DISABLE_SPEEDY!==`false`&&{}.SC_DISABLE_SPEEDY);function ni(e){var t=[...arguments].slice(1);return Error(`An error occurred. See https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/utils/errors.md#${e} for more information.${t.length>0?` Args: ${t.join(`, `)}`:``}`)}var ri=new Map,ii=new Map,ai=1,oi=function(e){if(ri.has(e))return ri.get(e);for(;ii.has(ai);)ai++;var t=ai++;return ri.set(e,t),ii.set(t,e),t},si=function(e,t){ai=t+1,ri.set(e,t),ii.set(t,e)},ci=Object.freeze([]),li=Object.freeze({});function ui(e,t,n){return n===void 0&&(n=li),e.theme!==n.theme&&e.theme||t||n.theme}var di=new Set(`a.abbr.address.area.article.aside.audio.b.bdi.bdo.blockquote.body.button.br.canvas.caption.cite.code.col.colgroup.data.datalist.dd.del.details.dfn.dialog.div.dl.dt.em.embed.fieldset.figcaption.figure.footer.form.h1.h2.h3.h4.h5.h6.header.hgroup.hr.html.i.iframe.img.input.ins.kbd.label.legend.li.main.map.mark.menu.meter.nav.object.ol.optgroup.option.output.p.picture.pre.progress.q.rp.rt.ruby.s.samp.search.section.select.slot.small.span.strong.sub.summary.sup.table.tbody.td.template.textarea.tfoot.th.thead.time.tr.u.ul.var.video.wbr.circle.clipPath.defs.ellipse.feBlend.feColorMatrix.feComponentTransfer.feComposite.feConvolveMatrix.feDiffuseLighting.feDisplacementMap.feDistantLight.feDropShadow.feFlood.feFuncA.feFuncB.feFuncG.feFuncR.feGaussianBlur.feImage.feMerge.feMergeNode.feMorphology.feOffset.fePointLight.feSpecularLighting.feSpotLight.feTile.feTurbulence.filter.foreignObject.g.image.line.linearGradient.marker.mask.path.pattern.polygon.polyline.radialGradient.rect.stop.svg.switch.symbol.text.textPath.tspan.use`.split(`.`)),fi=/[!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~-]+/g,pi=/(^-|-$)/g;function mi(e){return e.replace(fi,`-`).replace(pi,``)}var hi=/(a)(d)/gi,gi=function(e){return String.fromCharCode(e+(e>25?39:97))};function _i(e){var t,n=``;for(t=Math.abs(e);t>52;t=t/52|0)n=gi(t%52)+n;return(gi(t%52)+n).replace(hi,`$1-$2`)}var vi,yi=function(e,t){for(var n=t.length;n;)e=33*e^t.charCodeAt(--n);return e},bi=function(e){return yi(5381,e)};function xi(e){return _i(bi(e)>>>0)}function Si(e){return e.displayName||e.name||`Component`}function Ci(e){return typeof e==`string`&&!0}var wi=typeof Symbol==`function`&&Symbol.for,Ti=wi?Symbol.for(`react.memo`):60115,Ei=wi?Symbol.for(`react.forward_ref`):60112,Di={childContextTypes:!0,contextType:!0,contextTypes:!0,defaultProps:!0,displayName:!0,getDefaultProps:!0,getDerivedStateFromError:!0,getDerivedStateFromProps:!0,mixins:!0,propTypes:!0,type:!0},Oi={name:!0,length:!0,prototype:!0,caller:!0,callee:!0,arguments:!0,arity:!0},ki={$$typeof:!0,compare:!0,defaultProps:!0,displayName:!0,propTypes:!0,type:!0},Ai=((vi={})[Ei]={$$typeof:!0,render:!0,defaultProps:!0,displayName:!0,propTypes:!0},vi[Ti]=ki,vi);function ji(e){return(`type`in(t=e)&&t.type.$$typeof)===Ti?ki:`$$typeof`in e?Ai[e.$$typeof]:Di;var t}var Mi=Object.defineProperty,Ni=Object.getOwnPropertyNames,Pi=Object.getOwnPropertySymbols,Fi=Object.getOwnPropertyDescriptor,Ii=Object.getPrototypeOf,Li=Object.prototype;function Ri(e,t,n){if(typeof t!=`string`){if(Li){var r=Ii(t);r&&r!==Li&&Ri(e,r,n)}var i=Ni(t);Pi&&(i=i.concat(Pi(t)));for(var a=ji(e),o=ji(t),s=0;s<i.length;++s){var c=i[s];if(!(c in Oi||n&&n[c]||o&&c in o||a&&c in a)){var l=Fi(t,c);try{Mi(e,c,l)}catch{}}}}return e}function P(e){return typeof e==`function`}function F(e){return typeof e==`object`&&`styledComponentId`in e}function zi(e,t){return e&&t?`${e} ${t}`:e||t||``}function Bi(e,t){return e.join(t||``)}function Vi(e){return typeof e==`object`&&!!e&&e.constructor.name===Object.name&&!(`props`in e&&e.$$typeof)}function Hi(e,t,n){if(n===void 0&&(n=!1),!n&&!Vi(e)&&!Array.isArray(e))return t;if(Array.isArray(t))for(var r=0;r<t.length;r++)e[r]=Hi(e[r],t[r]);else if(Vi(t))for(var r in t)e[r]=Hi(e[r],t[r]);return e}function Ui(e,t){Object.defineProperty(e,`toString`,{value:t})}var Wi=function(){function e(e){this.groupSizes=new Uint32Array(512),this.length=512,this.tag=e,this._cGroup=0,this._cIndex=0}return e.prototype.indexOfGroup=function(e){if(e===this._cGroup)return this._cIndex;var t=this._cIndex;if(e>this._cGroup)for(var n=this._cGroup;n<e;n++)t+=this.groupSizes[n];else for(n=this._cGroup-1;n>=e;n--)t-=this.groupSizes[n];return this._cGroup=e,this._cIndex=t,t},e.prototype.insertRules=function(e,t){if(e>=this.groupSizes.length){for(var n=this.groupSizes,r=n.length,i=r;e>=i;)if((i<<=1)<0)throw ni(16,`${e}`);this.groupSizes=new Uint32Array(i),this.groupSizes.set(n),this.length=i;for(var a=r;a<i;a++)this.groupSizes[a]=0}for(var o=this.indexOfGroup(e+1),s=0,c=(a=0,t.length);a<c;a++)this.tag.insertRule(o,t[a])&&(this.groupSizes[e]++,o++,s++);s>0&&this._cGroup>e&&(this._cIndex+=s)},e.prototype.clearGroup=function(e){if(e<this.length){var t=this.groupSizes[e],n=this.indexOfGroup(e),r=n+t;this.groupSizes[e]=0;for(var i=n;i<r;i++)this.tag.deleteRule(n);t>0&&this._cGroup>e&&(this._cIndex-=t)}},e.prototype.getGroup=function(e){var t=``;if(e>=this.length||this.groupSizes[e]===0)return t;for(var n=this.groupSizes[e],r=this.indexOfGroup(e),i=r+n,a=r;a<i;a++)t+=this.tag.getRule(a)+$r;return t},e}(),Gi=`style[${Yr}][${Zr}="${Qr}"]`,Ki=RegExp(`^${Yr}\\.g(\\d+)\\[id="([\\w\\d-]+)"\\].*?"([^"]*)`),qi=function(e){return typeof ShadowRoot<`u`&&e instanceof ShadowRoot||`host`in e&&e.nodeType===11},Ji=function(e){if(!e)return document;if(qi(e))return e;if(`getRootNode`in e){var t=e.getRootNode();if(qi(t))return t}return document},Yi=function(e,t,n){for(var r,i=n.split(`,`),a=0,o=i.length;a<o;a++)(r=i[a])&&e.registerName(t,r)},Xi=function(e,t){for(var n=(t.textContent??``).split($r),r=[],i=0,a=n.length;i<a;i++){var o=n[i].trim();if(o){var s=o.match(Ki);if(s){var c=0|parseInt(s[1],10),l=s[2];c!==0&&(si(l,c),Yi(e,l,s[3]),e.getTag().insertRules(c,r)),r.length=0}else r.push(o)}}},Zi=function(e){for(var t=Ji(e.options.target).querySelectorAll(Gi),n=0,r=t.length;n<r;n++){var i=t[n];i&&i.getAttribute(Yr)!==Xr&&(Xi(e,i),i.parentNode&&i.parentNode.removeChild(i))}};function Qi(){return typeof __webpack_nonce__<`u`?__webpack_nonce__:null}var $i=function(e){var t=document.head,n=e||t,r=document.createElement(`style`),i=function(e){var t=Array.from(e.querySelectorAll(`style[${Yr}]`));return t[t.length-1]}(n),a=i===void 0?null:i.nextSibling;r.setAttribute(Yr,Xr),r.setAttribute(Zr,Qr);var o=Qi();return o&&r.setAttribute(`nonce`,o),n.insertBefore(r,a),r},ea=function(){function e(e){this.element=$i(e),this.element.appendChild(document.createTextNode(``)),this.sheet=function(e){if(e.sheet)return e.sheet;for(var t=e.getRootNode().styleSheets??document.styleSheets,n=0,r=t.length;n<r;n++){var i=t[n];if(i.ownerNode===e)return i}throw ni(17)}(this.element),this.length=0}return e.prototype.insertRule=function(e,t){try{return this.sheet.insertRule(t,e),this.length++,!0}catch{return!1}},e.prototype.deleteRule=function(e){this.sheet.deleteRule(e),this.length--},e.prototype.getRule=function(e){var t=this.sheet.cssRules[e];return t&&t.cssText?t.cssText:``},e}(),ta=function(){function e(e){this.element=$i(e),this.nodes=this.element.childNodes,this.length=0}return e.prototype.insertRule=function(e,t){if(e<=this.length&&e>=0){var n=document.createTextNode(t);return this.element.insertBefore(n,this.nodes[e]||null),this.length++,!0}return!1},e.prototype.deleteRule=function(e){this.element.removeChild(this.nodes[e]),this.length--},e.prototype.getRule=function(e){return e<this.length?this.nodes[e].textContent:``},e}(),na=function(){function e(e){this.rules=[],this.length=0}return e.prototype.insertRule=function(e,t){return e<=this.length&&(e===this.length?this.rules.push(t):this.rules.splice(e,0,t),this.length++,!0)},e.prototype.deleteRule=function(e){this.rules.splice(e,1),this.length--},e.prototype.getRule=function(e){return e<this.length?this.rules[e]:``},e}(),ra=ei,ia={isServer:!ei,useCSSOMInjection:!ti},I=function(){function e(e,t,n){e===void 0&&(e=li),t===void 0&&(t={});var r=this;this.options=Wn(Wn({},ia),e),this.gs=t,this.names=new Map(n),this.server=!!e.isServer,!this.server&&ei&&ra&&(ra=!1,Zi(this)),Ui(this,function(){return function(e){for(var t=e.getTag(),n=t.length,r=``,i=function(n){var i=function(e){return ii.get(e)}(n);if(i===void 0)return`continue`;var a=e.names.get(i);if(a===void 0||!a.size)return`continue`;var o=t.getGroup(n);if(o.length===0)return`continue`;var s=Yr+`.g`+n+`[id="`+i+`"]`,c=``;a.forEach(function(e){e.length>0&&(c+=e+`,`)}),r+=o+s+`{content:"`+c+`"}`+$r},a=0;a<n;a++)i(a);return r}(r)})}return e.registerId=function(e){return oi(e)},e.prototype.rehydrate=function(){!this.server&&ei&&Zi(this)},e.prototype.reconstructWithOptions=function(t,n){n===void 0&&(n=!0);var r=new e(Wn(Wn({},this.options),t),this.gs,n&&this.names||void 0);return!this.server&&ei&&t.target!==this.options.target&&Ji(this.options.target)!==Ji(t.target)&&Zi(r),r},e.prototype.allocateGSInstance=function(e){return this.gs[e]=(this.gs[e]||0)+1},e.prototype.getTag=function(){return this.tag||=(e=function(e){var t=e.useCSSOMInjection,n=e.target;return e.isServer?new na(n):t?new ea(n):new ta(n)}(this.options),new Wi(e));var e},e.prototype.hasNameForId=function(e,t){var n;return(n=this.names.get(e)?.has(t))!=null&&n},e.prototype.registerName=function(e,t){oi(e);var n=this.names.get(e);n?n.add(t):this.names.set(e,new Set([t]))},e.prototype.insertRules=function(e,t,n){this.registerName(e,t),this.getTag().insertRules(oi(e),n)},e.prototype.clearNames=function(e){this.names.has(e)&&this.names.get(e).clear()},e.prototype.clearRules=function(e){this.getTag().clearGroup(oi(e)),this.clearNames(e)},e.prototype.clearTag=function(){this.tag=void 0},e}();function aa(e,t){return t==null||typeof t==`boolean`||t===``?``:typeof t!=`number`||t===0||e in Kn||e.startsWith(`--`)?String(t).trim():`${t}px`}var oa=function(e){return e>=`A`&&e<=`Z`};function sa(e){for(var t=``,n=0;n<e.length;n++){var r=e[n];if(n===1&&r===`-`&&e[0]===`-`)return e;oa(r)?t+=`-`+r.toLowerCase():t+=r}return t.startsWith(`ms-`)?`-`+t:t}var ca=Symbol.for(`sc-keyframes`);function la(e){return typeof e==`object`&&!!e&&ca in e}var L=function(e){return e==null||!1===e||e===``},ua=function(e){var t=[];for(var n in e){var r=e[n];e.hasOwnProperty(n)&&!L(r)&&(Array.isArray(r)&&r.isCss||P(r)?t.push(`${sa(n)}:`,r,`;`):Vi(r)?t.push.apply(t,Gn(Gn([`${n} {`],ua(r),!1),[`}`],!1)):t.push(`${sa(n)}: ${aa(n,r)};`))}return t};function da(e,t,n,r,i){if(i===void 0&&(i=[]),typeof e==`string`)return e&&i.push(e),i;if(L(e))return i;if(F(e))return i.push(`.${e.styledComponentId}`),i;if(P(e))return!P(a=e)||a.prototype&&a.prototype.isReactComponent||!t?(i.push(e),i):da(e(t),t,n,r,i);var a;if(la(e))return n?(e.inject(n,r),i.push(e.getName(r))):i.push(e),i;if(Vi(e)){for(var o=ua(e),s=0;s<o.length;s++)i.push(o[s]);return i}if(!Array.isArray(e))return i.push(e.toString()),i;for(s=0;s<e.length;s++)da(e[s],t,n,r,i);return i}function fa(e){for(var t=0;t<e.length;t+=1){var n=e[t];if(P(n)&&!F(n))return!1}return!0}var pa=bi(Qr),ma=function(){function e(e,t,n){this.rules=e,this.staticRulesId=``,this.isStatic=(n===void 0||n.isStatic)&&fa(e),this.componentId=t,this.baseHash=yi(pa,t),this.baseStyle=n,I.registerId(t)}return e.prototype.generateAndInjectStyles=function(e,t,n){var r=this.baseStyle?this.baseStyle.generateAndInjectStyles(e,t,n).className:``;if(this.isStatic&&!n.hash)if(this.staticRulesId&&t.hasNameForId(this.componentId,this.staticRulesId))r=zi(r,this.staticRulesId);else{var i=Bi(da(this.rules,e,t,n)),a=_i(yi(this.baseHash,i)>>>0);if(!t.hasNameForId(this.componentId,a)){var o=n(i,`.${a}`,void 0,this.componentId);t.insertRules(this.componentId,a,o)}r=zi(r,a),this.staticRulesId=a}else{for(var s=yi(this.baseHash,n.hash),c=``,l=0;l<this.rules.length;l++){var u=this.rules[l];if(typeof u==`string`)c+=u;else if(u){var d=Bi(da(u,e,t,n));s=yi(yi(s,String(l)),d),c+=d}}if(c){var f=_i(s>>>0);if(!t.hasNameForId(this.componentId,f)){var p=n(c,`.${f}`,void 0,this.componentId);t.insertRules(this.componentId,f,p)}r=zi(r,f)}}return{className:r,css:typeof window>`u`?t.getTag().getGroup(oi(this.componentId)):``}},e}(),ha=/&/g,ga=47,_a=42;function va(e){if(e.indexOf(`}`)===-1)return!1;for(var t=e.length,n=0,r=0,i=!1,a=0;a<t;a++){var o=e.charCodeAt(a);if(r!==0||i||o!==ga||e.charCodeAt(a+1)!==_a)if(i)o===_a&&e.charCodeAt(a+1)===ga&&(i=!1,a++);else if(o!==34&&o!==39||a!==0&&e.charCodeAt(a-1)===92){if(r===0){if(o===123)n++;else if(o===125&&--n<0)return!0}}else r===0?r=o:r===o&&(r=0);else i=!0,a++}return n!==0||r!==0}function ya(e,t){return e.map(function(e){return e.type===`rule`&&(e.value=`${t} ${e.value}`,e.value=e.value.replaceAll(`,`,`,${t} `),e.props=e.props.map(function(e){return`${t} ${e}`})),Array.isArray(e.children)&&e.type!==`@keyframes`&&(e.children=ya(e.children,t)),e})}function ba(e){var t,n,r,i=e===void 0?li:e,a=i.options,o=a===void 0?li:a,s=i.plugins,c=s===void 0?ci:s,l=function(e,r,i){return i.startsWith(n)&&i.endsWith(n)&&i.replaceAll(n,``).length>0?`.${t}`:e},u=c.slice();u.push(function(e){e.type===`rule`&&e.value.includes(`&`)&&(r||=RegExp(`\\${n}\\b`,`g`),e.props[0]=e.props[0].replace(ha,n).replace(r,l))}),o.prefix&&u.push(Jr),u.push(Gr);var d=[],f=Kr(u.concat(qr(function(e){return d.push(e)}))),p=function(e,i,a,s){i===void 0&&(i=``),a===void 0&&(a=``),s===void 0&&(s=`&`),t=s,n=i,r=void 0;var c=function(e){if(!va(e))return e;for(var t=e.length,n=``,r=0,i=0,a=0,o=!1,s=0;s<t;s++){var c=e.charCodeAt(s);if(a!==0||o||c!==ga||e.charCodeAt(s+1)!==_a)if(o)c===_a&&e.charCodeAt(s+1)===ga&&(o=!1,s++);else if(c!==34&&c!==39||s!==0&&e.charCodeAt(s-1)===92){if(a===0)if(c===123)i++;else if(c===125){if(--i<0){for(var l=s+1;l<t;){var u=e.charCodeAt(l);if(u===59||u===10)break;l++}l<t&&e.charCodeAt(l)===59&&l++,i=0,s=l-1,r=l;continue}i===0&&(n+=e.substring(r,s+1),r=s+1)}else c===59&&i===0&&(n+=e.substring(r,s+1),r=s+1)}else a===0?a=c:a===c&&(a=0);else o=!0,s++}if(r<t){var d=e.substring(r);va(d)||(n+=d)}return n}(function(e){if(e.indexOf(`//`)===-1)return e;for(var t=e.length,n=[],r=0,i=0,a=0,o=0;i<t;){var s=e.charCodeAt(i);if(s!==34&&s!==39||i!==0&&e.charCodeAt(i-1)===92)if(a===0)if(s===ga&&i+1<t&&e.charCodeAt(i+1)===_a){for(i+=2;i+1<t&&(e.charCodeAt(i)!==_a||e.charCodeAt(i+1)!==ga);)i++;i+=2}else if(s===40&&i>=3&&(32|e.charCodeAt(i-1))==108&&(32|e.charCodeAt(i-2))==114&&(32|e.charCodeAt(i-3))==117)o=1,i++;else if(o>0)s===41?o--:s===40&&o++,i++;else if(s===_a&&i+1<t&&e.charCodeAt(i+1)===ga)i>r&&n.push(e.substring(r,i)),r=i+=2;else if(s===ga&&i+1<t&&e.charCodeAt(i+1)===ga){for(i>r&&n.push(e.substring(r,i));i<t&&e.charCodeAt(i)!==10;)i++;r=i}else i++;else i++;else a===0?a=s:a===s&&(a=0),i++}return r===0?e:(r<t&&n.push(e.substring(r)),n.join(``))}(e)),l=Rr(a||i?`${a} ${i} { ${c} }`:c);return o.namespace&&(l=ya(l,o.namespace)),d=[],Wr(l,f),d};return p.hash=c.length?c.reduce(function(e,t){return t.name||ni(15),yi(e,t.name)},5381).toString():``,p}var xa=new I,Sa=ba(),Ca=x.createContext({shouldForwardProp:void 0,styleSheet:xa,stylis:Sa});Ca.Consumer;var wa=x.createContext(void 0);function Ta(){return x.useContext(Ca)}function Ea(e){if(!x.useMemo)return e.children;var t=Ta().styleSheet,n=x.useMemo(function(){var n=t;return e.sheet?n=e.sheet:e.target&&(n=n.reconstructWithOptions({target:e.target},!1)),e.disableCSSOMInjection&&(n=n.reconstructWithOptions({useCSSOMInjection:!1})),n},[e.disableCSSOMInjection,e.sheet,e.target,t]),r=x.useMemo(function(){return ba({options:{namespace:e.namespace,prefix:e.enableVendorPrefixes},plugins:e.stylisPlugins})},[e.enableVendorPrefixes,e.namespace,e.stylisPlugins]),i=x.useMemo(function(){return{shouldForwardProp:e.shouldForwardProp,styleSheet:n,stylis:r}},[e.shouldForwardProp,n,r]);return x.createElement(Ca.Provider,{value:i},x.createElement(wa.Provider,{value:r},e.children))}var Da=x.createContext(void 0);Da.Consumer;var Oa={};function ka(e,t,n){var r=F(e),i=e,a=!Ci(e),o=t.attrs,s=o===void 0?ci:o,c=t.componentId,l=c===void 0?function(e,t){var n=typeof e==`string`?mi(e):`sc`;Oa[n]=(Oa[n]||0)+1;var r=`${n}-${xi(Qr+n+Oa[n])}`;return t?`${t}-${r}`:r}(t.displayName,t.parentComponentId):c,u=t.displayName,d=u===void 0?function(e){return Ci(e)?`styled.${e}`:`Styled(${Si(e)})`}(e):u,f=t.displayName&&t.componentId?`${mi(t.displayName)}-${t.componentId}`:t.componentId||l,p=r&&i.attrs?i.attrs.concat(s).filter(Boolean):s,m=t.shouldForwardProp;if(r&&i.shouldForwardProp){var h=i.shouldForwardProp;if(t.shouldForwardProp){var g=t.shouldForwardProp;m=function(e,t){return h(e,t)&&g(e,t)}}else m=h}var _=new ma(n,f,r?i.componentStyle:void 0);function v(e,t){return function(e,t,n){var r=e.attrs,i=e.componentStyle,a=e.defaultProps,o=e.foldedComponentIds,s=e.styledComponentId,c=e.target,l=x.useContext(Da),u=Ta(),d=e.shouldForwardProp||u.shouldForwardProp,f=ui(t,l,a)||li,p=function(e,t,n){for(var r,i=Wn(Wn({},t),{className:void 0,theme:n}),a=0;a<e.length;a+=1){var o=P(r=e[a])?r(i):r;for(var s in o)s===`className`?i.className=zi(i.className,o[s]):s===`style`?i.style=Wn(Wn({},i.style),o[s]):s in t&&t[s]===void 0||(i[s]=o[s])}return`className`in t&&typeof t.className==`string`&&(i.className=zi(i.className,t.className)),i}(r,t,f),m=p.as||c,h={};for(var g in p)p[g]===void 0||g[0]===`$`||g===`as`||g===`theme`&&p.theme===f||(g===`forwardedAs`?h.as=p.forwardedAs:d&&!d(g,m)||(h[g]=p[g]));var _=function(e,t){var n=Ta();return e.generateAndInjectStyles(t,n.styleSheet,n.stylis)}(i,p).className,v=zi(o,s);return _&&(v+=` `+_),p.className&&(v+=` `+p.className),h[Ci(m)&&!di.has(m)?`class`:`className`]=v,n&&(h.ref=n),(0,x.createElement)(m,h)}(y,e,t)}v.displayName=d;var y=x.forwardRef(v);return y.attrs=p,y.componentStyle=_,y.displayName=d,y.shouldForwardProp=m,y.foldedComponentIds=r?zi(i.foldedComponentIds,i.styledComponentId):``,y.styledComponentId=f,y.target=r?i.target:e,Object.defineProperty(y,`defaultProps`,{get:function(){return this._foldedDefaultProps},set:function(e){this._foldedDefaultProps=r?function(e){for(var t=[...arguments].slice(1),n=0,r=t;n<r.length;n++)Hi(e,r[n],!0);return e}({},i.defaultProps,e):e}}),Ui(y,function(){return`.${y.styledComponentId}`}),a&&Ri(y,e,{attrs:!0,componentStyle:!0,displayName:!0,foldedComponentIds:!0,shouldForwardProp:!0,styledComponentId:!0,target:!0}),y}function Aa(e,t){for(var n=[e[0]],r=0,i=t.length;r<i;r+=1)n.push(t[r],e[r+1]);return n}var ja=function(e){return Object.assign(e,{isCss:!0})};function Ma(e){var t=[...arguments].slice(1);if(P(e)||Vi(e))return ja(da(Aa(ci,Gn([e],t,!0))));var n=e;return t.length===0&&n.length===1&&typeof n[0]==`string`?da(n):ja(da(Aa(n,t)))}function Na(e,t,n){if(n===void 0&&(n=li),!t)throw ni(1,t);var r=function(r){var i=[...arguments].slice(1);return e(t,n,Ma.apply(void 0,Gn([r],i,!1)))};return r.attrs=function(r){return Na(e,t,Wn(Wn({},n),{attrs:Array.prototype.concat(n.attrs,r).filter(Boolean)}))},r.withConfig=function(r){return Na(e,t,Wn(Wn({},n),r))},r}var Pa=function(e){return Na(ka,e)},R=Pa;di.forEach(function(e){R[e]=Pa(e)});var Fa;(function(){function e(e,t){this.rules=e,this.componentId=t,this.isStatic=fa(e),I.registerId(this.componentId+1)}return e.prototype.createStyles=function(e,t,n,r){var i=r(Bi(da(this.rules,t,n,r)),``),a=this.componentId+e;n.insertRules(a,a,i)},e.prototype.removeStyles=function(e,t){t.clearRules(this.componentId+e)},e.prototype.renderStyles=function(e,t,n,r){e>2&&I.registerId(this.componentId+e);var i=this.componentId+e;this.isStatic?n.hasNameForId(i,i)||this.createStyles(e,t,n,r):(this.removeStyles(e,n),this.createStyles(e,t,n,r))},e})();var Ia=function(){function e(e,t){var n=this;this[Fa]=!0,this.inject=function(e,t){t===void 0&&(t=Sa);var r=n.name+t.hash;e.hasNameForId(n.id,r)||e.insertRules(n.id,r,t(n.rules,r,`@keyframes`))},this.name=e,this.id=`sc-keyframes-${e}`,this.rules=t,Ui(this,function(){throw ni(12,String(n.name))})}return e.prototype.getName=function(e){return e===void 0&&(e=Sa),this.name+e.hash},e}();function La(e){var t=[...arguments].slice(1),n=Bi(Ma.apply(void 0,Gn([e],t,!1)));return new Ia(xi(n),n)}Fa=ca,function(){function e(){var e=this;this._emitSheetCSS=function(){var t=e.instance.toString();if(!t)return``;var n=Qi();return`<style ${Bi([n&&`nonce="${n}"`,`${Yr}="true"`,`${Zr}="${Qr}"`].filter(Boolean),` `)}>${t}</style>`},this.getStyleTags=function(){if(e.sealed)throw ni(2);return e._emitSheetCSS()},this.getStyleElement=function(){var t;if(e.sealed)throw ni(2);var n=e.instance.toString();if(!n)return[];var r=((t={})[Yr]=``,t[Zr]=Qr,t.dangerouslySetInnerHTML={__html:n},t),i=Qi();return i&&(r.nonce=i),[x.createElement(`style`,Wn({},r,{key:`sc-0-0`}))]},this.seal=function(){e.sealed=!0},this.instance=new I({isServer:!0}),this.sealed=!1}return e.prototype.collectStyles=function(e){if(this.sealed)throw ni(2);return x.createElement(Ea,{sheet:this.instance},e)},e.prototype.interleaveWithNodeStream=function(e){throw ni(3)},e}(),`${Yr}`;var Ra=`/portfolio/assets/profile-Cytu1P98.jpeg`,za=o((e=>{var t=Symbol.for(`react.transitional.element`),n=Symbol.for(`react.fragment`);function r(e,n,r){var i=null;if(r!==void 0&&(i=``+r),n.key!==void 0&&(i=``+n.key),`key`in n)for(var a in r={},n)a!==`key`&&(r[a]=n[a]);else r=n;return n=r.ref,{$$typeof:t,type:e,key:i,ref:n===void 0?null:n,props:r}}e.Fragment=n,e.jsx=r,e.jsxs=r})),z=o(((e,t)=>{t.exports=za()}))(),Ba=La`
-  from { opacity: 0; transform: translateY(22px); }
+  from { opacity: 0; transform: translateY(1.375rem); }
   to   { opacity: 1; transform: translateY(0); }
 `,Va=La`
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-6px); }
+  0%, 100% { transform: translateY(0rem); }
+  50%       { transform: translateY(-0.375rem); }
 `,Ha=R.div`
   position: relative;
   min-height: calc(100vh - 3.5rem);
@@ -64,7 +64,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     content: "";
     display: inline-block;
     width: 2rem;
-    height: 1.5px;
+    height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
   }
@@ -92,7 +92,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   font-weight: 300;
   line-height: 1.8;
   color: #5c3e22;
-  max-width: 400px;
+  max-width: 25rem;
   margin: 0;
 
   opacity: 0;
@@ -119,7 +119,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1.5px solid #2c1a0e;
+  border: 0.09375rem solid #2c1a0e;
   transition:
     background 0.22s ease,
     color 0.22s ease,
@@ -138,7 +138,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 
   &:hover::after {
-    transform: translateX(3px);
+    transform: translateX(0.1875rem);
   }
 `,Xa=R(Tn)`
   font-family: "Open Sans", sans-serif;
@@ -152,7 +152,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.1em;
   text-transform: uppercase;
   text-decoration: none;
-  border: 1.5px solid rgba(44, 26, 14, 0.35);
+  border: 0.09375rem solid rgba(44, 26, 14, 0.35);
   transition:
     border-color 0.22s ease,
     background 0.22s ease;
@@ -171,20 +171,20 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   animation: ${Ba} 0.7s ease forwards;
   animation-delay: 0.3s;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     order: -1;
   }
 `,Qa=R.div`
   position: relative;
-  width: 280px;
-  height: 340px;
+  width: 17.5rem;
+  height: 21.25rem;
   flex-shrink: 0;
   animation: ${Va} 5s ease-in-out infinite;
   animation-delay: 1s;
 
-  @media (max-width: 480px) {
-    width: 220px;
-    height: 270px;
+  @media (max-width: 30rem) {
+    width: 13.75rem;
+    height: 16.875rem;
   }
 `,$a=R.img`
   width: 100%;
@@ -197,22 +197,22 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   filter: saturate(0.9) contrast(1.02);
 `,eo=R.div`
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: -12px;
-  bottom: -12px;
-  border: 2px solid #c8963e;
+  top: 0.75rem;
+  left: 0.75rem;
+  right: -0.75rem;
+  bottom: -0.75rem;
+  border: 0.125rem solid #c8963e;
   z-index: 0;
 `,to=R.div`
   position: absolute;
-  bottom: -20px;
-  right: -20px;
-  width: 48px;
-  height: 48px;
+  bottom: -1.25rem;
+  right: -1.25rem;
+  width: 3rem;
+  height: 3rem;
   background: #b2c4a4;
   z-index: 2;
 `;function no(){return(0,z.jsx)(Ha,{children:(0,z.jsxs)(Ua,{children:[(0,z.jsxs)(Wa,{children:[(0,z.jsx)(Ga,{children:`Software Engineer · Bengaluru, India`}),(0,z.jsxs)(Ka,{children:[`Maanasi`,(0,z.jsx)(`br`,{}),(0,z.jsx)(`em`,{children:`Shastri`})]}),(0,z.jsx)(qa,{children:`I build scalable systems and user-centric products — from real-time data pipelines to polished frontends.`}),(0,z.jsxs)(Ja,{children:[(0,z.jsx)(Ya,{to:`/projects`,children:`View Projects`}),(0,z.jsx)(Xa,{to:`/contact`,children:`Get in Touch`})]})]}),(0,z.jsx)(Za,{children:(0,z.jsxs)(Qa,{children:[(0,z.jsx)($a,{src:Ra,alt:`Maanasi Shastri`}),(0,z.jsx)(eo,{}),(0,z.jsx)(to,{})]})})]})})}var ro=La`
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(1.25rem); }
   to   { opacity: 1; transform: translateY(0); }
 `,io=e=>Ma`
   opacity: 0;
@@ -222,12 +222,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background-color: #f5edd8;
   min-height: calc(100vh - 3.5rem);
 `,oo=R.div`
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: 0 auto;
   padding: 5rem 2.5rem 6rem;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     padding: 3rem 1.5rem 4rem;
   }
 `,so=R.p`
@@ -247,7 +247,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     content: "";
     display: inline-block;
     width: 2rem;
-    height: 1.5px;
+    height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
   }
@@ -267,7 +267,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,lo=R.div`
   width: 4rem;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${io(.2)}
@@ -278,7 +278,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   margin-bottom: 5rem;
   ${io(.28)}
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
@@ -309,11 +309,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   display: flex;
   flex-direction: column;
   gap: 0;
-  border-left: 2px solid rgba(200, 150, 62, 0.3);
+  border-left: 0.125rem solid rgba(200, 150, 62, 0.3);
 `,ho=R.div`
   padding: 0.9rem 0 0.9rem 1.25rem;
   position: relative;
-  border-bottom: 1px solid rgba(44, 26, 14, 0.08);
+  border-bottom: 0.0625rem solid rgba(44, 26, 14, 0.08);
 
   &:last-child {
     border-bottom: none;
@@ -322,13 +322,13 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   &::before {
     content: "";
     position: absolute;
-    left: -5px;
+    left: -0.3125rem;
     top: 1.15rem;
-    width: 8px;
-    height: 8px;
+    width: 0.5rem;
+    height: 0.5rem;
     border-radius: 50%;
     background: #c8963e;
-    border: 1.5px solid #f5edd8;
+    border: 0.09375rem solid #f5edd8;
   }
 `,go=R.div`
   display: flex;
@@ -372,15 +372,15 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   &::after {
     content: "";
     flex: 1;
-    height: 1px;
+    height: 0.0625rem;
     background: rgba(44, 26, 14, 0.1);
   }
 `,H=R.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
   gap: 2rem;
 
-  @media (max-width: 480px) {
+  @media (max-width: 30rem) {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
   }
@@ -396,7 +396,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   color: #2c1a0e;
   margin: 0;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(200, 150, 62, 0.3);
+  border-bottom: 0.0625rem solid rgba(200, 150, 62, 0.3);
 `,wo=R.div`
   display: flex;
   flex-wrap: wrap;
@@ -408,7 +408,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.06em;
   color: #8a6a3a;
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(200, 150, 62, 0.4);
+  border: 0.0625rem solid rgba(200, 150, 62, 0.4);
   background: rgba(200, 150, 62, 0.06);
   transition:
     background 0.18s ease,
@@ -419,7 +419,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: #c8963e;
   }
 `,Eo={Fundamentals:[`C`,`C++`,`DSA`,`OOP`,`OS`,`DBMS`],Databases:[`MySQL`,`PostgreSQL`,`MongoDB`],"Web Dev":[`HTML`,`CSS`,`JavaScript`,`ReactJS`,`NodeJS`,`Go`,`REST APIs`,`GraphQL`],"Tools & Others":[`Git`,`Redis`,`Kafka`,`Prometheus (PromQL)`,`Zoho Desk APIs`,`Zoho CRM APIs`]},Do=[{degree:`B.E. Computer Science`,school:`KLE Technological University`,year:`2021-2025`,score:`CGPA 9.05`},{degree:`Pre-University`,school:`The Learning Centre PU College, Mangalore`,year:`2019-2021`,score:`95.5%`},{degree:`Schooling`,school:`Vimal V. Deshpande School, Haliyal`,year:`2009-2019`,score:`93.4%`}];function Oo(){return(0,z.jsx)(ao,{children:(0,z.jsxs)(oo,{children:[(0,z.jsx)(so,{children:`About Me`}),(0,z.jsxs)(co,{children:[`Engineer, builder,`,(0,z.jsx)(`br`,{}),(0,z.jsx)(`em`,{children:`problem solver.`})]}),(0,z.jsx)(lo,{}),(0,z.jsxs)(uo,{children:[(0,z.jsxs)(fo,{children:[(0,z.jsx)(po,{children:`I'm Maanasi Shastri, a Software Engineer based in Bengaluru, India. I graduated with a B.E. in Computer Science from KLE Technological University with a CGPA of 9.05, and I've been building production systems ever since.`}),(0,z.jsx)(po,{children:`I enjoy building across the spectrum — from high-throughput systems handling thousands of events per second to small UI details that elevate user experience. For me, clean code and thoughtful design are deeply connected.`})]}),(0,z.jsx)(B,{children:(0,z.jsxs)(`div`,{children:[(0,z.jsx)(V,{children:`Education`}),(0,z.jsx)(mo,{children:Do.map((e,t)=>(0,z.jsxs)(ho,{children:[(0,z.jsxs)(go,{children:[(0,z.jsx)(_o,{children:e.degree}),(0,z.jsx)(vo,{children:e.score})]}),(0,z.jsxs)(yo,{children:[e.school,` · `,e.year]})]},t))})]})})]}),(0,z.jsxs)(bo,{children:[(0,z.jsx)(xo,{children:`Skills`}),(0,z.jsx)(H,{children:Object.entries(Eo).map(([e,t])=>(0,z.jsxs)(So,{children:[(0,z.jsx)(Co,{children:e}),(0,z.jsx)(wo,{children:t.map(e=>(0,z.jsx)(To,{children:e},e))})]},e))})]})]})})}var ko=La`
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(1.25rem); }
   to   { opacity: 1; transform: translateY(0); }
 `,Ao=e=>Ma`
   opacity: 0;
@@ -429,12 +429,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background-color: #f5edd8;
   min-height: calc(100vh - 3.5rem);
 `,No=R.div`
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: 0 auto;
   padding: 5rem 2.5rem 6rem;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     padding: 3rem 1.5rem 4rem;
   }
 `,Po=R.h1`
@@ -453,7 +453,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,Fo=R.div`
   width: 4rem;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${Ao(.2)}
@@ -461,13 +461,13 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   display: flex;
   flex-direction: column;
   gap: 0;
-  border-top: 1px solid rgba(44, 26, 14, 0.1);
+  border-top: 0.0625 solid rgba(44, 26, 14, 0.1);
 `,Lo=R.div`
   display: grid;
   grid-template-columns: 4rem 1fr;
   gap: 2rem;
   padding: 2.5rem 0;
-  border-bottom: 1px solid rgba(44, 26, 14, 0.1);
+  border-bottom: 0.0625 solid rgba(44, 26, 14, 0.1);
   transition: background 0.2s ease;
   ${e=>Ao(.18+e.$index*.1)}
 
@@ -478,7 +478,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     padding-right: 1.5rem;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
   }
@@ -491,7 +491,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   padding-top: 0.2rem;
   user-select: none;
 
-  @media (max-width: 600px) {
+  @media (max-width: 37.5rem) {
     font-size: 1.4rem;
   }
 `,zo=R.div`
@@ -518,7 +518,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #8fa882;
-  border: 1px solid #b2c4a4;
+  border: 0.0625 solid #b2c4a4;
   padding: 0.2rem 0.6rem;
   white-space: nowrap;
   align-self: flex-start;
@@ -530,7 +530,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   line-height: 1.8;
   color: #5c3e22;
   margin: 0;
-  max-width: 640px;
+  max-width: 40rem;
 `,Wo=R.div`
   display: flex;
   align-items: center;
@@ -548,7 +548,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.06em;
   color: #8a6a3a;
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(200, 150, 62, 0.4);
+  border: 0.0625 solid rgba(200, 150, 62, 0.4);
   background: rgba(200, 150, 62, 0.06);
   transition:
     background 0.18s ease,
@@ -576,7 +576,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     letter-spacing: 0.14em;
   }
 `;function Jo(){return(0,z.jsx)(Mo,{children:(0,z.jsxs)(No,{children:[(0,z.jsx)(Po,{children:`Projects`}),(0,z.jsx)(Fo,{}),(0,z.jsx)(Io,{children:jo.map((e,t)=>(0,z.jsxs)(Lo,{$index:t,children:[(0,z.jsx)(Ro,{children:e.number}),(0,z.jsxs)(zo,{children:[(0,z.jsxs)(Bo,{children:[(0,z.jsx)(Vo,{children:e.title}),(0,z.jsx)(Ho,{children:e.highlight})]}),(0,z.jsx)(Uo,{children:e.desc}),(0,z.jsxs)(Wo,{children:[(0,z.jsx)(Go,{children:e.tags.map(e=>(0,z.jsx)(Ko,{children:e},e))}),e.link&&(0,z.jsx)(qo,{href:e.link,target:`_blank`,rel:`noreferrer`,children:`View ↗`})]})]})]},e.number))})]})})}var Yo=La`
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(1.25rem); }
   to   { opacity: 1; transform: translateY(0); }
 `,Xo=e=>Ma`
   opacity: 0;
@@ -586,12 +586,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background-color: #f5edd8;
   min-height: calc(100vh - 3.5rem);
 `,$o=R.div`
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: 0 auto;
   padding: 5rem 2.5rem 6rem;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     padding: 3rem 1.5rem 4rem;
   }
 `,es=R.p`
@@ -611,7 +611,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     content: "";
     display: inline-block;
     width: 2rem;
-    height: 1.5px;
+    height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
   }
@@ -631,7 +631,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,ns=R.div`
   width: 4rem;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${Xo(.2)}
@@ -651,12 +651,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   align-items: center;
   padding-top: 0.35rem;
 `,os=R.div`
-  width: 10px;
-  height: 10px;
+  width: 0.625rem;
+  height: 0.625rem;
   border-radius: 50%;
   background: #c8963e;
-  border: 2px solid #f5edd8;
-  box-shadow: 0 0 0 1.5px #c8963e;
+  border: 0.125rem solid #f5edd8;
+  box-shadow: 0 0 0 0.09375rem #c8963e;
   flex-shrink: 0;
   z-index: 1;
 `,ss=R.div`
@@ -706,7 +706,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   letter-spacing: 0.06em;
   color: #8a6a3a;
   padding: 0.25rem 0.65rem;
-  border: 1px solid rgba(200, 150, 62, 0.4);
+  border: 0.0625rem solid rgba(200, 150, 62, 0.4);
   background: rgba(200, 150, 62, 0.06);
   transition:
     background 0.18s ease,
@@ -717,11 +717,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     border-color: #c8963e;
   }
 `;function hs(){return(0,z.jsx)(Qo,{children:(0,z.jsxs)($o,{children:[(0,z.jsx)(es,{children:`Career`}),(0,z.jsxs)(ts,{children:[`Work`,(0,z.jsx)(`br`,{}),(0,z.jsx)(`em`,{children:`Experience`})]}),(0,z.jsx)(ns,{}),(0,z.jsx)(rs,{children:Zo.map((e,t)=>(0,z.jsxs)(is,{$index:t,children:[(0,z.jsx)(as,{children:(0,z.jsx)(os,{})}),(0,z.jsxs)(ss,{children:[(0,z.jsxs)(cs,{children:[(0,z.jsx)(ls,{children:e.type}),(0,z.jsx)(us,{children:e.period})]}),(0,z.jsx)(ds,{children:e.role}),(0,z.jsxs)(fs,{children:[e.company,` · `,e.location]}),(0,z.jsx)(ps,{children:e.stack.map(e=>(0,z.jsx)(ms,{children:e},e))})]})]},t))})]})})}var gs=`https://qvdacjsavkxikakbqqjl.supabase.co`,_s=`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF2ZGFjanNhdmt4aWtha2JxcWpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ3MTc0OTgsImV4cCI6MjA5MDI5MzQ5OH0.sYhUgj_EFucRiCkEuM3sa933USBNAagi83014LBbIo0`,vs=La`
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(0.5rem); }
   to   { opacity: 1; transform: translateY(0); }
 `,ys=R.div`
   background: #ead9bc;
-  border: 1px solid rgba(44, 26, 14, 0.12);
+  border: 0.0625rem solid rgba(44, 26, 14, 0.12);
   padding: 2rem;
   display: flex;
   flex-direction: column;
@@ -751,7 +751,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   font-weight: 300;
   color: #2c1a0e;
   background: #f5edd8;
-  border: 1.5px solid rgba(44, 26, 14, 0.15);
+  border: 0.09375rem solid rgba(44, 26, 14, 0.15);
   padding: 0.75rem 1rem;
   outline: none;
   transition: border-color 0.2s ease;
@@ -770,7 +770,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
 `,Ts=R.textarea`
   ${Cs}
   resize: vertical;
-  min-height: 130px;
+  min-height: 10.625rem;
   line-height: 1.7;
 `,Es=R.button`
   display: inline-flex;
@@ -785,7 +785,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  border: 1.5px solid #2c1a0e;
+  border: 0.09375rem solid #2c1a0e;
   cursor: pointer;
   transition:
     background 0.22s ease,
@@ -818,11 +818,11 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   text-align: center;
   animation: ${vs} 0.4s ease forwards;
 `,ks=R.div`
-  width: 40px;
-  height: 40px;
+  width: 2.5rem;
+  height: 2.5rem;
   border-radius: 50%;
   background: rgba(200, 150, 62, 0.12);
-  border: 1.5px solid #c8963e;
+  border: 0.09375rem solid #c8963e;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -841,7 +841,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   color: #8a6a3a;
   margin: 0;
 `;function Ms(){let[e,t]=(0,x.useState)({email:``,message:``}),[n,r]=(0,x.useState)(!1),[i,a]=(0,x.useState)(!1),[o,s]=(0,x.useState)(``),c=e=>{t(t=>({...t,[e.target.name]:e.target.value})),s(``)},l=async()=>{if(!(!e.email||!e.message)){a(!0),s(``);try{if(!(await fetch(`${gs}/rest/v1/messages`,{method:`POST`,headers:{"Content-Type":`application/json`,apikey:_s,Authorization:`Bearer ${_s}`,Prefer:`return=minimal`},body:JSON.stringify({email:e.email,message:e.message})})).ok)throw Error(`Failed to send`);r(!0)}catch(e){console.error(`Error sending message:`,e),s(`Something went wrong. Please try again.`)}finally{a(!1)}}},u=e.email.trim()&&e.message.trim();return(0,z.jsxs)(ys,{children:[(0,z.jsx)(bs,{children:`Send a Message`}),n?(0,z.jsxs)(Os,{children:[(0,z.jsx)(ks,{children:`✓`}),(0,z.jsx)(As,{children:`Message received!`}),(0,z.jsx)(js,{children:`Thanks for reaching out — I'll get back to you soon.`})]}):(0,z.jsxs)(z.Fragment,{children:[(0,z.jsxs)(xs,{children:[(0,z.jsx)(Ss,{htmlFor:`email`,children:`Your Email`}),(0,z.jsx)(ws,{id:`email`,name:`email`,type:`email`,placeholder:`you@example.com`,value:e.email,onChange:c})]}),(0,z.jsxs)(xs,{children:[(0,z.jsx)(Ss,{htmlFor:`message`,children:`Message`}),(0,z.jsx)(Ts,{id:`message`,name:`message`,placeholder:`What's on your mind?`,value:e.message,onChange:c})]}),o&&(0,z.jsx)(Ds,{children:o}),(0,z.jsx)(Es,{onClick:l,disabled:!u||i,children:i?`Sending...`:`Send Message →`})]})]})}var Ns=La`
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(1.25rem); }
   to   { opacity: 1; transform: translateY(0); }
 `,Ps=e=>Ma`
   opacity: 0;
@@ -851,12 +851,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background-color: #f5edd8;
   min-height: calc(100vh - 3.5rem);
 `,Is=R.div`
-  max-width: 1100px;
+  max-width: 68.75rem;
   margin: 0 auto;
   padding: 5rem 2.5rem 6rem;
   width: 100%;
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     padding: 3rem 1.5rem 4rem;
   }
 `,Ls=R.p`
@@ -876,7 +876,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     content: "";
     display: inline-block;
     width: 2rem;
-    height: 1.5px;
+    height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
   }
@@ -896,7 +896,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,zs=R.div`
   width: 4rem;
-  height: 2px;
+  height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${Ps(.2)}
@@ -906,7 +906,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   gap: 4rem;
   ${Ps(.28)}
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     grid-template-columns: 1fr;
     gap: 2.5rem;
   }
@@ -921,18 +921,18 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   line-height: 1.85;
   color: #5c3e22;
   margin: 0;
-  max-width: 420px;
+  max-width: 26.25rem;
 `,Us=R.div`
   display: flex;
   flex-direction: column;
   gap: 0;
-  border-top: 1px solid rgba(44, 26, 14, 0.1);
+  border-top: 0.0625rem solid rgba(44, 26, 14, 0.1);
 `,Ws=R.div`
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
   padding: 1.1rem 0;
-  border-bottom: 1px solid rgba(44, 26, 14, 0.1);
+  border-bottom: 0.0625rem solid rgba(44, 26, 14, 0.1);
 `,Gs=R.span`
   font-family: "Open Sans", sans-serif;
   font-size: 0.62rem;
@@ -963,7 +963,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   color: #2c1a0e;
 `;var Js=R.button`
   background: none;
-  border: 1px solid rgba(44, 26, 14, 0.25);
+  border: 0.0625rem solid rgba(44, 26, 14, 0.25);
   padding: 0.25rem 0.65rem;
   font-family: "Heebo", sans-serif;
   font-size: 0.65rem;
