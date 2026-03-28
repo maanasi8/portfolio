@@ -8,7 +8,7 @@ import Contact from "./pages/Contact";
 import "./index.css";
 import styled from "styled-components";
 import { List, X } from "phosphor-react";
-import Menu from "./drawers/Menu";
+import Menu from "./utilities/Menu";
 
 const MainWrapper = styled.div`
   margin: 0;
