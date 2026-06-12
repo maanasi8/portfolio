@@ -122,7 +122,7 @@ const Timeline = styled.div`
 
 const ExpItem = styled.div`
   display: grid;
-  grid-template-columns: -2rem 1fr;
+  grid-template-columns: auto 1fr;
   gap: clamp(1rem, 2.5vw, 1.5rem);
   padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
   position: relative;

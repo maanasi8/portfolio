@@ -110,9 +110,14 @@ const ProjectItem = styled.div`
 
   &:hover {
     background: rgba(200, 150, 62, 0.04);
-    margin: 0 -1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 37.5rem) {
+    &:hover {
+      margin: 0 -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   @media (max-width: 56rem) {
@@ -125,12 +130,6 @@ const ProjectItem = styled.div`
     grid-template-columns: clamp(2rem, 5vw, 2.5rem) 1fr;
     gap: clamp(0.75rem, 2vw, 1rem);
     padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
-
-    &:hover {
-      margin: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 
   @media (max-width: 24rem) {

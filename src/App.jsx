@@ -17,6 +17,7 @@ const MainWrapper = styled.div`
   min-height: 100vh;
   background-color: #f5edd8;
   overflow-x: hidden;
+  box-sizing: border-box;
 `;
 
 const NavBar = styled.nav`

@@ -79,6 +79,10 @@ const Divider = styled.div`
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${anim(0.2)}
+
+  @media (max-width: 30rem) {
+    margin-bottom: clamp(2rem, 4vw, 2.5rem);
+  }
 `;
 
 const Grid = styled.div`

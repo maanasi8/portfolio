@@ -141,6 +141,12 @@ const ChannelRow = styled.div`
   align-items: center;
   gap: clamp(0.75rem, 2vw, 1rem);
   flex-wrap: wrap;
+
+  @media (max-width: 30rem) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  }
 `;
 
 const ChannelValue = styled.a`
@@ -150,7 +156,9 @@ const ChannelValue = styled.a`
   color: #2c1a0e;
   text-decoration: none;
   transition: color 0.18s ease;
-  word-break: break-all;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 
   &:hover {
     color: #c8963e;
