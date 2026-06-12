@@ -46,31 +46,37 @@ const Page = styled.div`
 const Inner = styled.div`
   max-width: 68.75rem;
   margin: 0 auto;
-  padding: 5rem 2.5rem 6rem;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2.5rem)
+    clamp(2rem, 5vw, 6rem);
   width: 100%;
 
-  @media (max-width: 48rem) {
-    padding: 3rem 1.5rem 4rem;
+  @media (max-width: 56rem) {
+    padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 2.5vw, 2rem)
+      clamp(2rem, 4vw, 4rem);
+  }
+
+  @media (max-width: 30rem) {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
   }
 `;
 
 const PageTag = styled.p`
   font-family: "Open Sans", sans-serif;
-  font-size: 0.72rem;
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #a6782a;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem);
   ${anim(0.05)}
 
   &::before {
     content: "";
     display: inline-block;
-    width: 2rem;
+    width: clamp(1.25rem, 3vw, 2rem);
     height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
@@ -94,25 +100,42 @@ const PageTitle = styled.h1`
 `;
 
 const Divider = styled.div`
-  width: 4rem;
+  width: clamp(2.5rem, 5vw, 4rem);
   height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
-  margin-bottom: 3.5rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
   ${anim(0.2)}
 `;
 
 const Timeline = styled.div`
   display: flex;
-  flex-direction: row;
-  gap: 2.5rem;
+  flex-direction: column;
+  gap: 0;
   max-width: 100%;
+  border-left: 0.125rem solid rgba(200, 150, 62, 0.3);
+  padding-left: clamp(1rem, 2.5vw, 2rem);
+
+  @media (max-width: 30rem) {
+    padding-left: clamp(0.875rem, 2vw, 1.25rem);
+  }
 `;
 
 const ExpItem = styled.div`
   display: grid;
-  grid-template-columns: 2rem 1fr;
-  gap: 1.5rem;
+  grid-template-columns: -2rem 1fr;
+  gap: clamp(1rem, 2.5vw, 1.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  position: relative;
   ${(p) => anim(0.15 + p.$index * 0.12)}
+
+  &:last-child {
+    padding-bottom: 0;
+  }
+
+  @media (max-width: 30rem) {
+    gap: clamp(0.75rem, 2vw, 1rem);
+    padding-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  }
 `;
 
 const Rail = styled.div`
@@ -140,25 +163,25 @@ const ExpContent = styled.div`
 const ExpMeta = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  margin-bottom: clamp(0.25rem, 1vw, 0.5rem);
   flex-wrap: wrap;
 `;
 
 const ExpType = styled.span`
   font-family: "Open Sans", sans-serif;
-  font-size: 0.62rem;
+  font-size: clamp(0.55rem, 1.5vw, 0.65rem);
   font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: #f5edd8;
   background: #c8963e;
-  padding: 0.2rem 0.6rem;
+  padding: clamp(0.15rem, 0.5vw, 0.2rem) clamp(0.4rem, 1vw, 0.6rem);
 `;
 
 const ExpPeriod = styled.span`
   font-family: "Heebo", sans-serif;
-  font-size: 0.72rem;
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
   font-weight: 300;
   color: #8a6a3a;
   letter-spacing: 0.04em;
@@ -166,34 +189,34 @@ const ExpPeriod = styled.span`
 
 const ExpRole = styled.h2`
   font-family: "Open Sans", sans-serif;
-  font-size: 1.75rem;
+  font-size: clamp(1.1rem, 4vw, 1.75rem);
   font-weight: 500;
   color: #2c1a0e;
-  margin: 0 0 0.3rem;
+  margin: 0 0 clamp(0.2rem, 1vw, 0.3rem);
   line-height: 1.1;
 `;
 
 const ExpCompany = styled.p`
   font-family: "Heebo", sans-serif;
-  font-size: 0.85rem;
+  font-size: clamp(0.8rem, 1.5vw, 0.9rem);
   font-weight: 300;
   color: #8a6a3a;
-  margin: 0 0 1rem;
+  margin: 0 0 clamp(0.75rem, 2vw, 1rem);
 `;
 
 const ExpStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
+  gap: clamp(0.3rem, 1vw, 0.5rem);
 `;
 
 const Tag = styled.span`
   font-family: "Heebo", sans-serif;
-  font-size: 0.68rem;
+  font-size: clamp(0.6rem, 1.2vw, 0.7rem);
   font-weight: 400;
   letter-spacing: 0.06em;
   color: #8a6a3a;
-  padding: 0.25rem 0.65rem;
+  padding: clamp(0.15rem, 0.5vw, 0.25rem) clamp(0.4rem, 1vw, 0.65rem);
   border: 0.0625rem solid rgba(200, 150, 62, 0.4);
   background: rgba(200, 150, 62, 0.06);
   transition:
@@ -223,10 +246,6 @@ export default function Experience() {
         <Timeline>
           {experience.map((exp, i) => (
             <ExpItem key={i} $index={i}>
-              <Rail>
-                <Dot />
-              </Rail>
-
               <ExpContent>
                 <ExpMeta>
                   <ExpType>{exp.type}</ExpType>

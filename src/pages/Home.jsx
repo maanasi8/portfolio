@@ -27,36 +27,42 @@ const InnerPage = styled.div`
   flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: clamp(1rem, 3vw, 2rem);
   align-items: center;
   max-width: 68.75rem;
   margin: 0 auto;
-  padding: 5rem 2.5rem 4rem;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2.5rem)
+    clamp(1rem, 3vw, 4rem);
   width: 100%;
 
-  @media (max-width: 48rem) {
+  @media (max-width: 56rem) {
     grid-template-columns: 1fr;
-    padding: 3rem 1.5rem 2rem;
-    gap: 3rem;
+    padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 2.5vw, 2rem)
+      clamp(1.5rem, 3vw, 3rem);
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  @media (max-width: 30rem) {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
   }
 `;
 
 const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: clamp(1rem, 2.5vw, 1.75rem);
 `;
 
 const Header = styled.p`
   font-family: "Open Sans", sans-serif;
-  font-size: 0.72rem;
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #a6782a;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
   margin: 0;
 
   opacity: 0;
@@ -66,7 +72,7 @@ const Header = styled.p`
   &::before {
     content: "";
     display: inline-block;
-    width: 2rem;
+    width: clamp(1.25rem, 3vw, 2rem);
     height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
@@ -95,7 +101,7 @@ const Name = styled.h1`
 
 const Desc = styled.p`
   font-family: "Heebo", sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
   font-weight: 300;
   line-height: 1.8;
   color: #5c3e22;
@@ -115,17 +121,23 @@ const CtaRow = styled.div`
   opacity: 0;
   animation: ${fadeUp} 0.6s ease forwards;
   animation-delay: 0.46s;
+
+  @media (max-width: 30rem) {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 `;
 
 const PrimaryButton = styled(Link)`
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.5rem;
-  padding: 0.7rem 1.5rem;
+  padding: clamp(0.6rem, 1vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
   background: #2c1a0e;
   color: #f5edd8;
   font-family: "Open Sans", sans-serif;
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -135,6 +147,12 @@ const PrimaryButton = styled(Link)`
     background 0.22s ease,
     color 0.22s ease,
     border-color 0.22s ease;
+  min-height: 2.5rem;
+
+  @media (max-width: 30rem) {
+    min-width: 100%;
+    padding: clamp(0.7rem, 1.5vw, 0.9rem) clamp(1rem, 2vw, 1.5rem);
+  }
 
   &::after {
     content: "→";
@@ -157,10 +175,11 @@ const SecondaryButton = styled(Link)`
   font-family: "Open Sans", sans-serif;
   display: inline-flex;
   align-items: center;
-  padding: 0.7rem 1.5rem;
+  justify-content: center;
+  padding: clamp(0.6rem, 1vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
   background: transparent;
   color: #2c1a0e;
-  font-size: 0.8rem;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -169,6 +188,12 @@ const SecondaryButton = styled(Link)`
   transition:
     border-color 0.22s ease,
     background 0.22s ease;
+  min-height: 2.5rem;
+
+  @media (max-width: 30rem) {
+    min-width: 100%;
+    padding: clamp(0.7rem, 1.5vw, 0.9rem) clamp(1rem, 2vw, 1.5rem);
+  }
 
   &:hover {
     border-color: #c8963e;
@@ -193,15 +218,20 @@ const Aside = styled.div`
 
 const PhotoFrame = styled.div`
   position: relative;
-  width: 17.5rem;
-  height: 21.25rem;
+  width: clamp(11rem, 45vw, 17.5rem);
+  height: clamp(14rem, 55vw, 21.25rem);
   flex-shrink: 0;
   animation: ${floatFrame} 5s ease-in-out infinite;
   animation-delay: 1s;
 
+  @media (max-width: 56rem) {
+    width: clamp(10rem, 40vw, 16rem);
+    height: clamp(13rem, 50vw, 20rem);
+  }
+
   @media (max-width: 30rem) {
-    width: 13.75rem;
-    height: 16.875rem;
+    width: clamp(9rem, 70vw, 14rem);
+    height: clamp(11rem, 90vw, 17rem);
   }
 `;
 
@@ -218,20 +248,20 @@ const Photo = styled.img`
 
 const PhotoBorder = styled.div`
   position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  right: -0.75rem;
-  bottom: -0.75rem;
+  top: clamp(0.5rem, 2vw, 0.75rem);
+  left: clamp(0.5rem, 2vw, 0.75rem);
+  right: clamp(-0.5rem, -2vw, -0.75rem);
+  bottom: clamp(-0.5rem, -2vw, -0.75rem);
   border: 0.125rem solid #c8963e;
   z-index: 0;
 `;
 
 const PhotoCorner = styled.div`
   position: absolute;
-  bottom: -1.25rem;
-  right: -1.25rem;
-  width: 3rem;
-  height: 3rem;
+  bottom: clamp(-0.9rem, -3vw, -1.25rem);
+  right: clamp(-0.9rem, -3vw, -1.25rem);
+  width: clamp(2rem, 5vw, 3rem);
+  height: clamp(2rem, 5vw, 3rem);
   background: #b2c4a4;
   z-index: 2;
 `;

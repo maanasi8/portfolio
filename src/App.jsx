@@ -23,11 +23,11 @@ const NavBar = styled.nav`
   position: sticky;
   top: 0;
   z-index: 500;
-  height: 3.5rem;
+  height: clamp(3.25rem, 8vw, 3.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 1.25rem;
+  padding: 0 clamp(0.875rem, 2vw, 1.25rem);
   background-color: #c8963e;
   box-shadow: 0 0.125rem 1rem rgba(44, 26, 14, 0.18);
 `;
@@ -36,7 +36,7 @@ const LogoLink = styled(Link)`
   display: flex;
   color: #000000;
   font-weight: bold;
-  font-size: rem;
+  font-size: clamp(1rem, 2vw, 1.2rem);
   align-items: center;
   justify-content: center;
   text-decoration: none;
@@ -46,19 +46,26 @@ const MenuToggle = styled.button`
   background: none;
   border: none;
   cursor: pointer;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: clamp(2.25rem, 5vw, 2.75rem);
+  height: clamp(2.25rem, 5vw, 2.75rem);
   display: flex;
   align-items: center;
   justify-content: center;
   color: #000000;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease;
+
+  &:active {
+    transform: scale(0.95);
+  }
 `;
 
 const Footer = styled.footer`
   color: #ead9bc;
   text-align: center;
-  padding: 2rem 1rem;
-  font-size: 0.9rem;
+  padding: clamp(1.5rem, 3vw, 2rem) clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(0.8rem, 1.2vw, 0.95rem);
   letter-spacing: 0.08em;
   font-style: italic;
 `;

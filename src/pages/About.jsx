@@ -20,31 +20,37 @@ const Page = styled.div`
 const Inner = styled.div`
   max-width: 68.75rem;
   margin: 0 auto;
-  padding: 5rem 2.5rem 6rem;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2.5rem)
+    clamp(2rem, 5vw, 6rem);
   width: 100%;
 
-  @media (max-width: 48rem) {
-    padding: 3rem 1.5rem 4rem;
+  @media (max-width: 56rem) {
+    padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 2.5vw, 2rem)
+      clamp(2rem, 4vw, 4rem);
+  }
+
+  @media (max-width: 30rem) {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
   }
 `;
 
 const PageTag = styled.p`
   font-family: "Open Sans", sans-serif;
-  font-size: 0.72rem;
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #a6782a;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem);
   ${anim(0.05)}
 
   &::before {
     content: "";
     display: inline-block;
-    width: 2rem;
+    width: clamp(1.25rem, 3vw, 2rem);
     height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
@@ -78,13 +84,18 @@ const Divider = styled.div`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 5rem;
+  gap: clamp(2rem, 5vw, 4rem);
+  margin-bottom: clamp(3rem, 5vw, 5rem);
   ${anim(0.28)}
 
-  @media (max-width: 48rem) {
+  @media (max-width: 56rem) {
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  @media (max-width: 30rem) {
+    gap: clamp(1.25rem, 3vw, 2rem);
+    margin-bottom: clamp(2rem, 4vw, 3rem);
   }
 `;
 
@@ -96,7 +107,7 @@ const Bio = styled.div`
 
 const BioP = styled.p`
   font-family: "Heebo", sans-serif;
-  font-size: 0.97rem;
+  font-size: clamp(0.9rem, 1.5vw, 1rem);
   font-weight: 300;
   line-height: 1.85;
   color: #5c3e22;
@@ -210,9 +221,14 @@ const SkillsGrid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
   gap: 2rem;
 
-  @media (max-width: 30rem) {
+  @media (max-width: 48rem) {
     grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+  }
+
+  @media (max-width: 30rem) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 `;
 

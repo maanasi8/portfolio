@@ -54,11 +54,17 @@ const Page = styled.div`
 const Inner = styled.div`
   max-width: 68.75rem;
   margin: 0 auto;
-  padding: 5rem 2.5rem 6rem;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2.5rem)
+    clamp(2rem, 5vw, 6rem);
   width: 100%;
 
-  @media (max-width: 48rem) {
-    padding: 3rem 1.5rem 4rem;
+  @media (max-width: 56rem) {
+    padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 2.5vw, 2rem)
+      clamp(2rem, 4vw, 4rem);
+  }
+
+  @media (max-width: 30rem) {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
   }
 `;
 
@@ -79,10 +85,10 @@ const PageTitle = styled.h1`
 `;
 
 const Divider = styled.div`
-  width: 4rem;
+  width: clamp(2.5rem, 5vw, 4rem);
   height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
-  margin-bottom: 3.5rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
   ${anim(0.2)}
 `;
 
@@ -95,9 +101,9 @@ const List = styled.div`
 
 const ProjectItem = styled.div`
   display: grid;
-  grid-template-columns: 4rem 1fr;
-  gap: 2rem;
-  padding: 2.5rem 0;
+  grid-template-columns: clamp(3rem, 8vw, 4rem) 1fr;
+  gap: clamp(0.75rem, 3vw, 2rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
   border-bottom: 0.0625 solid rgba(44, 26, 14, 0.1);
   transition: background 0.2s ease;
   ${(p) => anim(0.18 + p.$index * 0.1)}
@@ -109,9 +115,27 @@ const ProjectItem = styled.div`
     padding-right: 1.5rem;
   }
 
+  @media (max-width: 56rem) {
+    grid-template-columns: clamp(2.5rem, 7vw, 3.5rem) 1fr;
+    gap: clamp(0.75rem, 2.5vw, 1.5rem);
+    padding: clamp(1.25rem, 2.5vw, 2rem) 0;
+  }
+
   @media (max-width: 37.5rem) {
-    grid-template-columns: 2.5rem 1fr;
-    gap: 1rem;
+    grid-template-columns: clamp(2rem, 5vw, 2.5rem) 1fr;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
+
+    &:hover {
+      margin: 0;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  @media (max-width: 24rem) {
+    grid-template-columns: 1fr;
+    gap: clamp(0.5rem, 2vw, 0.75rem);
   }
 `;
 
@@ -126,6 +150,11 @@ const ProjectNumber = styled.div`
 
   @media (max-width: 37.5rem) {
     font-size: 1.4rem;
+  }
+
+  @media (max-width: 24rem) {
+    font-size: 1rem;
+    padding-top: 0;
   }
 `;
 
@@ -145,7 +174,7 @@ const ProjectTop = styled.div`
 
 const ProjectTitle = styled.h2`
   font-family: "Open Sans", sans-serif;
-  font-size: 1.6rem;
+  font-size: clamp(1.1rem, 4vw, 1.6rem);
   font-weight: 500;
   color: #2c1a0e;
   margin: 0;
@@ -168,7 +197,7 @@ const ProjectHighlight = styled.span`
 
 const ProjectDesc = styled.p`
   font-family: "Heebo", sans-serif;
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   font-weight: 300;
   line-height: 1.8;
   color: #5c3e22;
@@ -180,7 +209,7 @@ const ProjectFooter = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: clamp(0.75rem, 2vw, 1rem);
   flex-wrap: wrap;
 `;
 

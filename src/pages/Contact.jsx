@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled, { keyframes, css } from "styled-components";
-import ContactForm from "../utilities/ContactForm";
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(1.25rem); }
@@ -21,31 +20,37 @@ const Page = styled.div`
 const Inner = styled.div`
   max-width: 68.75rem;
   margin: 0 auto;
-  padding: 5rem 2.5rem 6rem;
+  padding: clamp(2rem, 5vw, 5rem) clamp(1rem, 3vw, 2.5rem)
+    clamp(2rem, 5vw, 6rem);
   width: 100%;
 
-  @media (max-width: 48rem) {
-    padding: 3rem 1.5rem 4rem;
+  @media (max-width: 56rem) {
+    padding: clamp(2rem, 4vw, 4rem) clamp(1rem, 2.5vw, 2rem)
+      clamp(2rem, 4vw, 4rem);
+  }
+
+  @media (max-width: 30rem) {
+    padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
   }
 `;
 
 const PageTag = styled.p`
   font-family: "Open Sans", sans-serif;
-  font-size: 0.72rem;
+  font-size: clamp(0.65rem, 2vw, 0.75rem);
   font-weight: 400;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #a6782a;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  margin: 0 0 1.25rem;
+  gap: clamp(0.5rem, 1vw, 0.75rem);
+  margin: 0 0 clamp(0.75rem, 2vw, 1.25rem);
   ${anim(0.05)}
 
   &::before {
     content: "";
     display: inline-block;
-    width: 2rem;
+    width: clamp(1.25rem, 3vw, 2rem);
     height: 0.09375rem;
     background: #c8963e;
     flex-shrink: 0;
@@ -69,39 +74,42 @@ const PageTitle = styled.h1`
 `;
 
 const Divider = styled.div`
-  width: 4rem;
+  width: clamp(2.5rem, 5vw, 4rem);
   height: 0.125rem;
   background: linear-gradient(to right, #c8963e, #b2c4a4);
-  margin-bottom: 3.5rem;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
   ${anim(0.2)}
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
   ${anim(0.28)}
 
-  @media (max-width: 48rem) {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
+  @media (max-width: 56rem) {
+    gap: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  @media (max-width: 30rem) {
+    gap: clamp(1.25rem, 3vw, 2rem);
   }
 `;
 
 const Left = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 2.5rem;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  max-width: 26.25rem;
 `;
 
 const Intro = styled.p`
   font-family: "Heebo", sans-serif;
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.5vw, 1.05rem);
   font-weight: 300;
   line-height: 1.85;
   color: #5c3e22;
   margin: 0;
-  max-width: 26.25rem;
 `;
 
 const Channels = styled.div`
@@ -114,14 +122,14 @@ const Channels = styled.div`
 const Channel = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 0.3rem;
-  padding: 1.1rem 0;
+  gap: clamp(0.2rem, 0.5vw, 0.3rem);
+  padding: clamp(0.75rem, 2vw, 1.1rem) 0;
   border-bottom: 0.0625rem solid rgba(44, 26, 14, 0.1);
 `;
 
 const ChannelLabel = styled.span`
   font-family: "Open Sans", sans-serif;
-  font-size: 0.62rem;
+  font-size: clamp(0.55rem, 1.5vw, 0.65rem);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -131,17 +139,18 @@ const ChannelLabel = styled.span`
 const ChannelRow = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+  gap: clamp(0.75rem, 2vw, 1rem);
+  flex-wrap: wrap;
 `;
 
 const ChannelValue = styled.a`
   font-family: "Heebo", sans-serif;
-  font-size: 0.92rem;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   font-weight: 300;
   color: #2c1a0e;
   text-decoration: none;
   transition: color 0.18s ease;
+  word-break: break-all;
 
   &:hover {
     color: #c8963e;
@@ -150,42 +159,65 @@ const ChannelValue = styled.a`
 
 const ChannelText = styled.span`
   font-family: "Heebo", sans-serif;
-  font-size: 0.92rem;
+  font-size: clamp(0.85rem, 1.5vw, 0.95rem);
   font-weight: 300;
   color: #2c1a0e;
 `;
 
 const CopyBtn = styled.button`
-  background: none;
-  border: 0.0625rem solid rgba(44, 26, 14, 0.25);
-  padding: 0.25rem 0.65rem;
-  font-family: "Heebo", sans-serif;
-  font-size: 0.65rem;
+  font-family: "Open Sans", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(0.6rem, 1vw, 0.8rem) clamp(1rem, 2vw, 1.5rem);
+  background: #c8963e;
+  color: #f5edd8;
+  font-size: clamp(0.7rem, 1.2vw, 0.85rem);
   font-weight: 400;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: ${(p) => (p.$copied ? "#8FA882" : "#8A6A3A")};
-  border-color: ${(p) => (p.$copied ? "#B2C4A4" : "rgba(44, 26, 14, 0.25)")};
+  border: none;
   cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  transition:
+    background 0.22s ease,
+    color 0.22s ease;
+  min-height: 2.5rem;
+
+  @media (max-width: 30rem) {
+    padding: clamp(0.7rem, 1.5vw, 0.9rem) clamp(1rem, 2vw, 1.5rem);
+    width: 100%;
+  }
 
   &:hover {
-    background: rgba(200, 150, 62, 0.08);
-    border-color: #c8963e;
-    color: #2c1a0e;
+    background: #a6782a;
+    color: #f5edd8;
   }
 `;
 
-const Right = styled.div``;
+const fadeInItem = keyframes`
+  from { opacity: 0; }
+  to   { opacity: 1; }
+`;
+
+const ChannelCopied = styled.span`
+  font-family: "Heebo", sans-serif;
+  font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+  font-weight: 300;
+  color: #2c1a0e;
+  margin-top: clamp(0.5rem, 1vw, 0.75rem);
+  opacity: 0;
+  animation: ${fadeInItem} 0.35s ease forwards;
+  animation-delay: 0.1s;
+`;
 
 export default function Contact() {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = React.useState(false);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("maanasishastri8@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    navigator.clipboard.writeText("maanasishastri8@gmail.com").then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
   return (
@@ -215,8 +247,8 @@ export default function Contact() {
                   <ChannelValue href="mailto:maanasishastri8@gmail.com">
                     maanasishastri8@gmail.com
                   </ChannelValue>
-                  <CopyBtn onClick={handleCopyEmail} $copied={copied}>
-                    {copied ? "Copied ✓" : "Copy"}
+                  <CopyBtn onClick={handleCopyEmail}>
+                    {copied ? "Copied!" : "Copy"}
                   </CopyBtn>
                 </ChannelRow>
               </Channel>
@@ -251,10 +283,6 @@ export default function Contact() {
               </Channel>
             </Channels>
           </Left>
-
-          <Right>
-            <ContactForm />
-          </Right>
         </Grid>
       </Inner>
     </Page>
