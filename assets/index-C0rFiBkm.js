@@ -307,6 +307,10 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   background: linear-gradient(to right, #c8963e, #b2c4a4);
   margin-bottom: 3.5rem;
   ${io(.2)}
+
+  @media (max-width: 30rem) {
+    margin-bottom: clamp(2rem, 4vw, 2.5rem);
+  }
 `,B=R.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -525,9 +529,14 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
 
   &:hover {
     background: rgba(200, 150, 62, 0.04);
-    margin: 0 -1.5rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 37.5rem) {
+    &:hover {
+      margin: 0 -1.5rem;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
 
   @media (max-width: 56rem) {
@@ -540,12 +549,6 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
     grid-template-columns: clamp(2rem, 5vw, 2.5rem) 1fr;
     gap: clamp(0.75rem, 2vw, 1rem);
     padding: clamp(1.25rem, 2.5vw, 1.75rem) 0;
-
-    &:hover {
-      margin: 0;
-      padding-left: 0;
-      padding-right: 0;
-    }
   }
 
   @media (max-width: 24rem) {
@@ -729,7 +732,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   }
 `,rs=R.div`
   display: grid;
-  grid-template-columns: -2rem 1fr;
+  grid-template-columns: auto 1fr;
   gap: clamp(1rem, 2.5vw, 1.5rem);
   padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
   position: relative;
@@ -928,6 +931,12 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   align-items: center;
   gap: clamp(0.75rem, 2vw, 1rem);
   flex-wrap: wrap;
+
+  @media (max-width: 30rem) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  }
 `,Ds=R.a`
   font-family: "Heebo", sans-serif;
   font-size: clamp(0.85rem, 1.5vw, 0.95rem);
@@ -935,7 +944,9 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   color: #2c1a0e;
   text-decoration: none;
   transition: color 0.18s ease;
-  word-break: break-all;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 
   &:hover {
     color: #c8963e;
@@ -1074,6 +1085,7 @@ Please change the parent <Route path="${e}"> to <Route path="${e===`/`?`*`:`${e}
   min-height: 100vh;
   background-color: #f5edd8;
   overflow-x: hidden;
+  box-sizing: border-box;
 `,Qs=R.nav`
   position: sticky;
   top: 0;
