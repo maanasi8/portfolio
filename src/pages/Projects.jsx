@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "phosphor-react";
 import styled, { keyframes, css } from "styled-components";
 
 const fadeUp = keyframes`
@@ -256,6 +257,22 @@ const ProjectLink = styled.a`
   }
 `;
 
+const ProjectArrowContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #c8963e;
+  transition:
+    transform 0.2s ease,
+    color 0.18s ease;
+  flex-shrink: 0;
+
+  a:hover & {
+    color: #a6782a;
+    transform: translateX(0.1875rem) translateY(-0.1875rem);
+  }
+`;
+
 export default function Projects() {
   return (
     <Page>
@@ -284,8 +301,23 @@ export default function Projects() {
                     ))}
                   </ProjectTags>
                   {p.link && (
-                    <ProjectLink href={p.link} target="_blank" rel="noreferrer">
-                      View ↗
+                    <ProjectLink
+                      href={p.link}
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.25rem",
+                        }}
+                      >
+                        View
+                        <ProjectArrowContainer>
+                          <ArrowUpRight size={"1.1rem"} weight="bold" />
+                        </ProjectArrowContainer>
+                      </div>
                     </ProjectLink>
                   )}
                 </ProjectFooter>

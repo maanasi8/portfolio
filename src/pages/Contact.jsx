@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled, { keyframes, css } from "styled-components";
+import { ArrowUpRight } from "phosphor-react";
 
 const fadeUp = keyframes`
   from { opacity: 0; transform: translateY(1.25rem); }
@@ -139,13 +140,29 @@ const ChannelLabel = styled.span`
 const ChannelRow = styled.div`
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1rem);
+  gap: clamp(0.25rem, 0.75vw, 0.5rem);
   flex-wrap: wrap;
 
   @media (max-width: 30rem) {
     flex-direction: column;
     align-items: flex-start;
-    gap: clamp(0.5rem, 1.5vw, 0.75rem);
+    gap: clamp(0.2rem, 0.5vw, 0.3rem);
+  }
+`;
+
+const IconArrow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2c1a0e;
+  transition:
+    transform 0.2s ease,
+    color 0.18s ease;
+  flex-shrink: 0;
+
+  ${ChannelRow}:hover & {
+    color: #c8963e;
+    transform: translateX(0.1875rem) translateY(-0.1875rem);
   }
 `;
 
@@ -219,7 +236,7 @@ const ChannelCopied = styled.span`
 `;
 
 export default function Contact() {
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("maanasishastri8@gmail.com").then(() => {
@@ -270,24 +287,34 @@ export default function Contact() {
 
               <Channel>
                 <ChannelLabel>LinkedIn</ChannelLabel>
-                <ChannelValue
-                  href="https://linkedin.com/in/maanasi8"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  linkedin.com/in/maanasi8 ↗
-                </ChannelValue>
+                <ChannelRow>
+                  <ChannelValue
+                    href="https://linkedin.com/in/maanasi8"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    linkedin.com/in/maanasi8
+                  </ChannelValue>
+                  <IconArrow>
+                    <ArrowUpRight size="1rem" weight="bold" />
+                  </IconArrow>
+                </ChannelRow>
               </Channel>
 
               <Channel>
                 <ChannelLabel>GitHub</ChannelLabel>
-                <ChannelValue
-                  href="https://github.com/maanasi8"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  github.com/maanasi8 ↗
-                </ChannelValue>
+                <ChannelRow>
+                  <ChannelValue
+                    href="https://github.com/maanasi8"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    github.com/maanasi8
+                  </ChannelValue>
+                  <IconArrow>
+                    <ArrowUpRight size="1rem" weight="bold" />
+                  </IconArrow>
+                </ChannelRow>
               </Channel>
             </Channels>
           </Left>
